@@ -1,0 +1,52 @@
+
+@import "scss/variables.scss";
+
+.header {
+  height: 40px;
+  font-family: $font-family;
+  color: var(--primary-color);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-left {
+  left: 0;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+}
+
+.header-icon-menu {
+  background-image: url('../../assets/menuIcon.svg');
+  background-size: 25px; 
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header-icon-left {
+  background-image: url('../../assets/leftArrow.svg');
+  background-size: 25px; 
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header-icon-right {
+  background-image: url('../../assets/rightArrow.svg');
+  background-size: 25px; 
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.header-title {
+  position: absolute;
+  left:50%;
+  transform: translate(-50%, 0);
+}
+
+.header-right {
+  position: absolute;
+  margin-right: 10px;
+  right: 0;
+}

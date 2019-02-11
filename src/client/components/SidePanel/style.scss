@@ -1,0 +1,21 @@
+
+@import "scss/variables.scss";
+
+.side-panel {
+  position: fixed;
+  width: 100%;
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  z-index: 1000;
+  transform: translateX(-100%);
+  background-color: var(--primary-bg);
+}
+
+.side-panel.displayed {
+  transform: translateX(0%);
+}
+
+.side-panel-transitions {
+  -webkit-transition: transform 200ms cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 200ms cubic-bezier(0.19, 1, 0.22, 1); 
+}

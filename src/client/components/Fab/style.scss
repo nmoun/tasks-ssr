@@ -1,0 +1,29 @@
+@import "scss/variables.scss";
+
+.fab {
+  position: absolute;
+  overflow: hidden;
+  height: 50px;
+  width: 50px;
+  bottom: 25px;
+  right: 25px;
+  border-radius: 25px;
+  background: linear-gradient(125deg , #4e5ae2, #e66465);
+}
+
+.fab-image {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  height: 100%;
+  width: 100%;
+}
+
+.fab-image-barcode {
+  background-image: url('../../assets/barcode.svg');
+}
+
+.fab-image-plus {
+  background-size: 10px;
+  background-image: url('../../assets/plus.svg');
+}

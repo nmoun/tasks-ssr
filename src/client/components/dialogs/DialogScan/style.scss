@@ -1,0 +1,26 @@
+@import 'scss/variables.scss';
+
+.dialog-scan-msg-container {
+  padding: 10px;
+  text-align: center;
+}
+
+.dialog-scan-img-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100px;
+}
+
+.dialog-scan-img-container > img{
+  width: 50%;
+}
+
+.dialog-scan-input-container {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.dialog-scan-input {
+  border: none;
+}

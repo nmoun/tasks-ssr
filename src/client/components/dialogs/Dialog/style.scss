@@ -1,0 +1,26 @@
+@import 'scss/variables.scss';
+
+.overlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.dialog {
+  position: absolute;
+  overflow: hidden;
+  width: 250px;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  font-family: $font-family;
+  background-color: $secondary-bg;
+  color: $secondary-color;
+  border-radius: 10px;
+}

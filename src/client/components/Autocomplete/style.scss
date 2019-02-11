@@ -1,0 +1,36 @@
+@import 'scss/variables.scss';
+
+.autocomplete {
+  overflow: visible;
+}
+
+.autocomplete-input {
+  border: none;
+}
+
+.autocomplete-list {
+  position: absolute;
+  list-style: none;
+  left: 50%;
+  transform: translate(-50%);
+  padding: 0;
+}
+
+.autocomplete-entry {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  font-family: $font-family;
+  color: #000000;
+}
+
+// .autocomplete-entry:hover {
+//   background-color: #d3d3d3;
+// }
+
+.autocomplete-entry.autocomplete-entry-selected {
+  background-color: #d3d3d3;
+}

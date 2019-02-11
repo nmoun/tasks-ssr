@@ -1,0 +1,25 @@
+@import 'scss/variables.scss';
+
+.dialog-info-msg-container {
+  padding: 10px;
+  text-align: center;
+}
+
+.dialog-info-buttons {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+}
+
+.dialog-info-button {
+  flex: 1 1 auto;
+  border: none;
+  border-top: solid #ffffff 1px;
+  font-family: $font-family;
+  background-color: $secondary-bg;
+  color: $secondary-color;
+}
+
+.dialog-info-button-yes {
+  border-right: solid #ffffff 1px;
+}

@@ -1,0 +1,20 @@
+@import 'scss/variables.scss';
+
+.task-menu {
+  position: fixed;
+  width: 100%;
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  // z-index: 1000;
+  transform: translateX(0%);
+  background-color: var(--primary-bg);
+}
+
+.task-menu.hidden {
+  transform: translateX(100%);
+}
+
+.task-menu-transitions {
+  -webkit-transition: transform 200ms cubic-bezier(0.19, 1, 0.22, 1);
+  transition: transform 200ms cubic-bezier(0.19, 1, 0.22, 1); 
+}

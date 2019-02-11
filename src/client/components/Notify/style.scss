@@ -1,0 +1,30 @@
+@import 'scss/variables.scss';
+
+.notify-container {
+  position: absolute;
+  top: 0;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  z-index: 100;
+}
+
+.notify-text {
+  font-family: $font-family;
+}
+
+.notify-error {
+  color: #c40505;
+}
+
+.notify-info {
+  color: #066de2;
+}
+
+.notify-success {
+  color: #05c41f;
+}

@@ -1,0 +1,26 @@
+@import "scss/variables.scss";
+
+.loading-list-container {
+  position: relative;
+}
+
+.loading-list {
+  position: fixed;
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  width: 100%;
+}
+
+$elements: 20;
+@for $i from 0 to $elements {
+  $sdelay: ($i * 100) + '';
+  $tdelay: unquote(str_insert($sdelay, #{$ms}, str_length(#{$sdelay}) + 1));
+  .loading-list__widget:nth-child(#{$i + 1}) {
+    animation: Loading-flash infinite 3s $tdelay linear;
+  }
+}
+
+@keyframes Loading-flash {
+  0%, 100%   { background-color: var(--primary-bg); }
+  50% { background-color: #30373d; }
+}

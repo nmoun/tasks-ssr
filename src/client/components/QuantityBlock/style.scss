@@ -1,0 +1,24 @@
+
+@import "scss/variables.scss";
+
+
+.quantity-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 70px;
+  background: linear-gradient(125deg, #cc3399, #f15858 50%, #ff9933)
+}
+
+.quantity-block > input {
+  border: 0;
+  width: 70px;
+  font-size: 1.5em;
+  color: #ffffff;
+  font-family: $font-family;
+  outline: 0;
+  background: transparent;
+  text-align: center;
+}

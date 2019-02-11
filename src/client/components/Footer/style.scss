@@ -1,0 +1,9 @@
+@import 'scss/variables.scss';
+
+.footer-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  bottom: 0;
+  width: 100%;
+}

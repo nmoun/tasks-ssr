@@ -1,0 +1,26 @@
+@import 'scss/variables.scss';
+
+.navbutton-container + .navbutton-container {
+  border-left: $secondary-color solid 1px;
+}
+
+.navbutton-container {
+  height: 40px;
+  width: 50%;
+  background-color: $secondary-bg;
+  color: $secondary-color;
+  font-family: $font-family;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbutton-container.disabled {
+  color: $disabled-color;
+}
+
+.navbutton-img {
+  height: 20px;
+  margin-left: 10px;
+}

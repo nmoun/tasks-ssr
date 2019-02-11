@@ -1,0 +1,25 @@
+@import 'scss/variables.scss';
+
+.menu {
+  position: fixed;
+  width: 100%;
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  background-color: $primary-bg;
+}
+
+.menu > ul {
+  padding: 0;  
+}
+
+.menu-entry {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 40px;
+  padding-left: 20px;
+  border-bottom: solid 1px var(--primary-border);
+  width: 100%;
+  font-family: $font-family;
+  color: var(--primary-color);
+}
