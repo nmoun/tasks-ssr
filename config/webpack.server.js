@@ -1,5 +1,6 @@
 const path = require('path')
 const nodeExternals = require('webpack-node-externals');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   target: 'node',
@@ -17,6 +18,11 @@ module.exports = {
     filename: 'server.js',
     path: path.resolve(__dirname, '../dist'),
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "styles.css",
+    })
+  ],
   module: {
     rules: [
       {
@@ -43,6 +49,10 @@ module.exports = {
       {
         test: /\.(scss)$/,
         use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+          }
+        }, {
           loader: 'css-loader', // translates CSS into CommonJS modules
           options: {
             sourceMap: true

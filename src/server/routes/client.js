@@ -39,6 +39,7 @@ function htmlTemplate(reactDom, preloadedState, language) {
       <head>
           <meta charset="utf-8">
           <title>Tasks SSR</title>
+          <link rel="stylesheet" href="./styles.css">
       </head>
       
       <body>
