@@ -5,6 +5,7 @@ console.log('process.env.NODE_ENV: ' + process.env.NODE_ENV)
 const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
+  mode: 'production',
   target: 'node',
   node: {
     __dirname: false,
