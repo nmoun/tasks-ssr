@@ -59,7 +59,7 @@ export function logout() {
 };
 
 export function isLoggedIn(){
-  const idToken = localStorage.getItem(JWT_TOKEN);
+  const idToken = typeof localStorage !== 'undefined' && localStorage.getItem(JWT_TOKEN);
   return !!idToken && !isTokenExpired(idToken);
 }
 

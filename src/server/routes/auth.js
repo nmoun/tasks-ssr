@@ -1,8 +1,10 @@
-const router = require('express').Router();
-const User = require('../models/users')
-const passport = require('passport')
-const jwt = require('jsonwebtoken');
-const logger = require('../utils/logger')
+import express from 'express';
+import User from '../models/users'
+import passport from 'passport'
+import jwt from 'jsonwebtoken';
+import logger from '../utils/logger'
+
+const router = express.Router()
 
 router.post('/register', function(req, res, next) {
   if (req.body.password !== req.body.passwordConf) {

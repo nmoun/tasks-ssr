@@ -1,4 +1,3 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path')
 
 console.log('dist folder: '+ path.resolve(__dirname, '../dist'))
@@ -68,12 +67,6 @@ module.exports = {
       },
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './template/index.html',
-      file: './index.html'
-    })
-  ],
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',

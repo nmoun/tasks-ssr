@@ -1,11 +1,12 @@
-const router = require('express').Router();
-const passport = require('passport')
-const clientRouter = require('./client');
-const taskRouter = require('./tasks');
-const articleRouter = require('./articles');
-const authRouter = require('./auth');
-const orderRouter = require('./order');
+import express from 'express';
+import passport from 'passport'
+import clientRouter from './client';
+import taskRouter from './tasks';
+import articleRouter from './articles';
+import authRouter from './auth';
+import orderRouter from './order';
 
+const router = express.Router()
 router.get('/', clientRouter);
 router.use('/api', authRouter);
 router.use('/api/tasks', passport.authenticate('jwt', {session: false}), taskRouter);

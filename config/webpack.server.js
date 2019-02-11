@@ -43,8 +43,6 @@ module.exports = {
       {
         test: /\.(scss)$/,
         use: [{
-          loader: 'style-loader', // inject CSS to page
-        }, {
           loader: 'css-loader', // translates CSS into CommonJS modules
           options: {
             sourceMap: true

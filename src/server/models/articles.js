@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose'
 
 var ArticleSchema = new mongoose.Schema({
   id: String,

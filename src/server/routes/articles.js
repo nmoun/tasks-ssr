@@ -1,7 +1,10 @@
-const router = require('express').Router();
-const { Article } = require('../models/articles')
-const { handleError } = require('../db')
-const ObjectId = require('mongoose').Types.ObjectId; 
+import { Article } from '../models/articles'
+import express from 'express'
+import { handleError } from '../db'
+
+const ObjectId = require('mongoose').Types.ObjectId
+
+const router = express.Router();
 
 router.get('/',  (req, res) => {
   Article.find().sort({type: 'asc'}).exec((err, result) => {

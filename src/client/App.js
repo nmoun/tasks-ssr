@@ -17,6 +17,6 @@ class App extends Component {
       </Switch>
     )
   }
-};
+}
 
-export default App;
+export default App

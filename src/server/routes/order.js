@@ -1,9 +1,11 @@
-const router = require('express').Router();
-const Task = require('../models/tasks')
-const { handleError } = require('../db')
-const logger = require('../utils/logger')
+import express from 'express'
+import Task from '../models/tasks'
+import { handleError } from '../db'
+import logger from '../utils/logger'
 
-// Fake validation of the order task
+const router = express.Router();
+
+// Dummy validation of the order task
 router.put('/:task?',  (req, res) => {
   const taskId = req.params.task;
   if(!taskId){

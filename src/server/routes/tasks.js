@@ -1,7 +1,9 @@
-const router = require('express').Router();
-const Task = require('../models/tasks')
-const {handleError} = require('../db')
-const logger = require('../utils/logger')
+import express from 'express'
+import Task from '../models/tasks'
+import {handleError} from '../db'
+import logger from '../utils/logger'
+
+const router = express.Router();
 
 router.get('/',  (req, res) => {
   Task.find().sort({type: 'asc'}).exec((err, result) => {

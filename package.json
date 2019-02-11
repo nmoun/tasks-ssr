@@ -4,10 +4,9 @@
   "description": "Testing various stuff",
   "main": "index.js",
   "scripts": {
-    "start-client": "webpack-dev-server --config config/webpack.dev.js --open --hot --history-api-fallback",
-    "start": "concurrently \"npm run start-client\" \"nodemon src/server/index.js\"",
-    "build": "webpack --config config/webpack.prod.js",
-    "launch": "nodemon src/server/index.js",
+    "build": "webpack --config config/webpack.prod.js && npm run buildServer",
+    "buildServer": "webpack --mode development --config config/webpack.server.js",
+    "launch": "nodemon dist/server.js",
     "test": "webpack-dev-server --config config/webpack.test.js --open --hot --history-api-fallback"
   },
   "keywords": [],

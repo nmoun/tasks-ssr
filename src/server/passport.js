@@ -1,9 +1,11 @@
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy;
-const User = require('./models/users')
+import passport from 'passport'
+import passportLocal from 'passport-local';
+import User from './models/users'
+
+const LocalStrategy = passportLocal.Strategy
 
 // JWT
-const passportJWT = require("passport-jwt");
+import passportJWT from "passport-jwt";
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 

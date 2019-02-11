@@ -3,13 +3,12 @@ import React from 'react'
 var currentLang = {}
 
 /**
- * Closure on currentLang:
- * TODO use state to dynamically change language
+ * Closure on currentLang
  */
 class LabelProvider extends React.Component {
   constructor(props){
     super(props)
-    currentLang = props.lang
+    currentLang = typeof window !== 'undefined' ? window.__LANG__ : {}
   }
 
   render() {

@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { ArticleSchema } = require('./articles')
+import mongoose from 'mongoose';
+import { ArticleSchema } from './articles'
 
 var TaskSchema = new mongoose.Schema({
   id: {
