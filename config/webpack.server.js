@@ -1,6 +1,8 @@
 const path = require('path')
 const nodeExternals = require('webpack-node-externals');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+console.log('process.env.NODE_ENV: ' + process.env.NODE_ENV)
+const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   target: 'node',
@@ -10,7 +12,7 @@ module.exports = {
   },
   externals: [nodeExternals()],
   entry: './src/server/index.js',
-  devtool: 'source-map',
+  devtool: devMode ? 'source-map' : 'false',
   resolve: {
     modules: ['node_modules', 'src/client']
   },
@@ -18,11 +20,6 @@ module.exports = {
     filename: 'server.js',
     path: path.resolve(__dirname, '../dist'),
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: "styles.css",
-    })
-  ],
   module: {
     rules: [
       {
@@ -49,13 +46,9 @@ module.exports = {
       {
         test: /\.(scss)$/,
         use: [{
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-          }
-        }, {
           loader: 'css-loader', // translates CSS into CommonJS modules
           options: {
-            sourceMap: true
+            sourceMap: devMode ? true : false
           }
         }, {
           loader: 'postcss-loader', // Run post css actions

@@ -12,8 +12,10 @@ import morgan from 'morgan' // logging
 const app = express()
 const MongoStore = connectMongo(session)
 
-if(process.env.NODE_ENV === 'development'){
+let assetPath = __dirname
+if(process.env.NODE_ENV !== 'production'){
   app.use(morgan('dev'))
+  assetPath += '../../dist'
 }
 
 app.disable('x-powered-by')
@@ -31,7 +33,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(express.json());
 
-app.use(express.static(path.resolve(__dirname)));
+app.use(express.static(path.resolve(assetPath)));
 
 app.use('/', routes)
 

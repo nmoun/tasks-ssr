@@ -4,8 +4,8 @@
   "description": "Testing various stuff",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config config/webpack.prod.js && npm run buildServer",
-    "buildServer": "webpack --mode development --config config/webpack.server.js",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js && npm run buildServer",
+    "buildServer": "cross-env NODE_ENV=production webpack --config config/webpack.server.js",
     "launch": "nodemon dist/server.js",
     "test": "webpack-dev-server --config config/webpack.test.js --open --hot --history-api-fallback"
   },
@@ -51,6 +51,7 @@
     "bootstrap": "^4.1.1",
     "chai": "^4.2.0",
     "concurrently": "^3.5.1",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "es6-promise": "^4.2.5",
     "eslint": "^4.19.1",

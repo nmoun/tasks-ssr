@@ -1,6 +1,9 @@
 const path = require('path')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 console.log('dist folder: '+ path.resolve(__dirname, '../dist'))
+console.log('env: '+ process.env.NODE_ENV)
+const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   entry: './src/client/index.js',
@@ -13,6 +16,13 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/'
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: 'styles.css',
+    })
+  ],
   module: {
     rules: [
       {
@@ -38,31 +48,34 @@ module.exports = {
       },
       {
         test: /\.(scss)$/,
-        use: [{
-          loader: 'style-loader', // inject CSS to page
-        }, {
-          loader: 'css-loader', // translates CSS into CommonJS modules
-          options: {
-            sourceMap: true
-          }
-        }, {
-          loader: 'postcss-loader', // Run post css actions
-          options: {
-            plugins: function() { // post css plugins, can be exported to postcss.config.js
-              return [
-                require('precss'),
-                require('autoprefixer')
-              ];
+        use: [
+          {
+            loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          }, 
+          {
+            loader: 'css-loader', // translates CSS into CommonJS modules
+            options: {
+              sourceMap: devMode ? true : false
+            }
+          }, {
+            loader: 'postcss-loader', // Run post css actions
+            options: {
+              plugins: function() { // post css plugins, can be exported to postcss.config.js
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+              }
+            }
+          }, {
+            loader: 'resolve-url-loader'
+          }, {
+            loader: 'sass-loader', // compiles Sass to CSS
+            options:{
+              sourceMap: true // necessary for resolve-url-loader package 
             }
           }
-        }, {
-          loader: 'resolve-url-loader'
-        }, {
-          loader: 'sass-loader', // compiles Sass to CSS
-          options:{
-            sourceMap: true
-          }
-        }]
+        ]
       },
       {
         test: /\.(svg|woff2)$/,
