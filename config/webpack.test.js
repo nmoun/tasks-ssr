@@ -5,7 +5,6 @@ const fs = require('fs');
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
-console.log('cwd: ' + appDirectory);
 console.log('src folder location: ' + resolveApp('./src/client'));
 module.exports = {
   entry: './test/client/test.js',
