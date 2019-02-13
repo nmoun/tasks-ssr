@@ -4,9 +4,11 @@
   "description": "Testing various stuff",
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js && npm run buildServer",
+    "build": "npm run buildClient && npm run buildServer",
+    "buildClient": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
     "buildServer": "cross-env NODE_ENV=production webpack --config config/webpack.server.js",
     "launch": "nodemon dist/server.js",
+    "launchDev": "babel-node src/server/index.js",
     "test": "webpack-dev-server --config config/webpack.test.js --open --hot --history-api-fallback"
   },
   "keywords": [],
@@ -39,13 +41,15 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0-beta.46",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
-    "@babel/preset-env": "^7.0.0-beta.46",
-    "@babel/preset-react": "^7.0.0-beta.46",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^8.6.2",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^8.0.0-beta.2",
+    "babel-register": "^6.26.0",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.1",

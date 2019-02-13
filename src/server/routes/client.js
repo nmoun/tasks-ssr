@@ -1,14 +1,14 @@
 // Contains client generation
 import express from 'express'
-import App from 'App'
 import React from 'react'
 import { StaticRouter } from "react-router-dom"
 import ReactDOMServer from 'react-dom/server'
-import LabelProvider from 'labels/LabelProvider'
-import defaultLang from 'labels/langs/en.json'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import reducer from "state/reducers"
+import App from '../../client/App'
+import LabelProvider from '../../client/labels/LabelProvider'
+import defaultLang from '../../client/labels/langs/en.json'
+import reducer from "../../client/state/reducers"
 
 let router = express.Router();
 
