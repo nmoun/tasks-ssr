@@ -7,7 +7,8 @@
     "build": "npm run buildClient && npm run buildServer",
     "buildClient": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
     "buildServer": "cross-env NODE_ENV=production webpack --config config/webpack.server.js",
-    "launch": "nodemon --exec babel-node src/server/index.js",
+    "launchProd": "node dist/server.js",
+    "launchDev": "nodemon --exec babel-node src/server/index.js",
     "test": "webpack-dev-server --config config/webpack.test.js --open --hot --history-api-fallback"
   },
   "keywords": [],
@@ -79,6 +80,7 @@
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3",
     "webpack-dev-server": "^3.1.4",
+    "webpack-hot-middleware": "^2.24.3",
     "webpack-merge": "^4.1.4",
     "webpack-node-externals": "^1.7.2"
   }

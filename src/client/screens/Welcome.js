@@ -12,7 +12,7 @@ function Welcome() {
     </div>
     <div className="d-flex flex-column justify-content-start align-items-center">
       <div className="p-2">
-        <Link to="/login"><ThemedButton text="Login"/></Link>
+        <Link to="/login"><ThemedButton text="Dava"/></Link>
       </div>
       <div className="p-2">
         <Link to="/register"><ThemedButton text="Register"/></Link>

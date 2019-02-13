@@ -6,7 +6,9 @@ console.log('env: '+ process.env.NODE_ENV)
 const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-  entry: './src/client/index.js',
+  entry: [
+    './src/client/index.js'
+  ],
   resolve: {
     modules: ['node_modules', 'src/client']
   },

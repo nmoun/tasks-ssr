@@ -14,11 +14,27 @@ const MongoStore = connectMongo(session)
 
 let assetPath = __dirname
 if(process.env.NODE_ENV !== 'production'){
-  console.log('DEV environment')
+  console.log('environment development')
   app.use(morgan('dev'))
-  assetPath += '../../../dist'
+  assetPath += '/../../dist'
   console.log('__dirname path: ' + path.resolve(__dirname))
   console.log('asset path: ' + path.resolve(assetPath))
+
+  // setup HRM for development environment
+  // Step 1: Create & configure a webpack compiler
+  var webpack = require('webpack');
+  var webpackConfig = require('../../config/webpack.dev');
+  var compiler = webpack(webpackConfig);
+
+  // Step 2: Attach the dev middleware to the compiler & the server
+  app.use(require("webpack-dev-middleware")(compiler, {
+    logLevel: 'warn', publicPath: webpackConfig.output.publicPath
+  }));
+
+  // Step 3: Attach the hot middleware to the compiler & the server
+  app.use(require("webpack-hot-middleware")(compiler, {
+    log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
+  }));
 }
 
 app.disable('x-powered-by')
