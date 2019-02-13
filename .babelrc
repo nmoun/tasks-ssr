@@ -1,7 +1,26 @@
 {
-    "presets": [
-        "@babel/preset-env",
-        "@babel/preset-react"
-    ],
-    "plugins": ["@babel/plugin-syntax-dynamic-import"]
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    ["module-resolver", {
+      "root": ["./src/client"],
+      "alias": {
+      }
+    }],
+    "inline-react-svg"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        ["ignore-imports",
+          {
+            "extensions": [".scss"]
+          }
+        ]
+      ]
+    }
+  }
 }

@@ -14,8 +14,11 @@ const MongoStore = connectMongo(session)
 
 let assetPath = __dirname
 if(process.env.NODE_ENV !== 'production'){
+  console.log('DEV environment')
   app.use(morgan('dev'))
-  assetPath += '../../dist'
+  assetPath += '../../../dist'
+  console.log('__dirname path: ' + path.resolve(__dirname))
+  console.log('asset path: ' + path.resolve(assetPath))
 }
 
 app.disable('x-powered-by')

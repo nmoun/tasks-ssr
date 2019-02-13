@@ -4,9 +4,9 @@ import './style.scss'
 
 function NavButton(props){
   let classNavButton = "navbutton-container" +  ((props.disabled === true) ? " disabled" : " clickable")
-
+  const Img = props.img
   return <div className={classNavButton} onClick={props.handleClick}>
-    <span>{props.text}</span><img className="navbutton-img" alt="navbutton" src={props.imgSrc}/>
+    <span>{props.text}</span><Img style={{height: '20px', marginLeft: '10px'}} />
   </div>
 }
 

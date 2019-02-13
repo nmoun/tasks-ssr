@@ -5,7 +5,7 @@ import { createLogger } from 'redux-logger'
 
 export const configureStore = () => {
   // Grab the state from a global variable injected into the server-generated HTML
-  const preloadedState = window.__PRELOADED_STATE__
+  const preloadedState = typeof window != undefined ? window.__PRELOADED_STATE__ : {}
   const logger = createLogger({})
   const middlewares = [thunk, logger]
   let store = createStore(reducer, preloadedState, applyMiddleware(...middlewares))

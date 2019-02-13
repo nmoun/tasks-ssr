@@ -8,7 +8,8 @@ import { connect } from 'react-redux'
 import { updateQuantity } from 'state/actions/task'
 import Footer from 'components/Footer'
 import NavButton from 'components/buttons/NavButton'
-import cacheImages from 'utils/cacheImages'
+import DownArrow from 'assets/downArrow.svg'
+import UpArrow from 'assets/upArrow.svg'
 
 class OrderArticleDetail extends React.Component{
 
@@ -46,8 +47,8 @@ class OrderArticleDetail extends React.Component{
       <Header title={title} leftIcon={ICONS.LEFT} handleClickLeft={this.goBack}/>
       <ArticleCell {...this.props.article} handleChangeValue={this.handleChangeValue}/>
       <Footer>
-        <NavButton text="Next" imgSrc={cacheImages["./downArrow.svg"]} handleClick={this.handleClickNext} disabled={this.props.nextId === null}/>
-        <NavButton text="Prev" imgSrc={cacheImages["./upArrow.svg"]} handleClick={this.handleClickPrevious} disabled={this.props.previousId === null}/>
+        <NavButton text="Next" img={DownArrow} handleClick={this.handleClickNext} disabled={this.props.nextId === null}/>
+        <NavButton text="Prev" img={UpArrow} handleClick={this.handleClickPrevious} disabled={this.props.previousId === null}/>
       </Footer>
     </ThemedPage>
   }
