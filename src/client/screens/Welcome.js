@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logo from 'assets/logo.svg';
 import ThemedButton from 'components/buttons/ThemedButton'
+import { getLabel } from 'labels/LabelProvider'
 
 import "scss/custom.scss";
 
@@ -12,10 +13,10 @@ function Welcome() {
     </div>
     <div className="d-flex flex-column justify-content-start align-items-center">
       <div className="p-2">
-        <Link to="/login"><ThemedButton text="Dava"/></Link>
+        <Link to="/login"><ThemedButton text={getLabel('welcome.login')}/></Link>
       </div>
       <div className="p-2">
-        <Link to="/register"><ThemedButton text="Register"/></Link>
+        <Link to="/register"><ThemedButton text={getLabel('welcome.register')}/></Link>
       </div>
     </div>
   </div>);

@@ -21,20 +21,13 @@ if(process.env.NODE_ENV !== 'production'){
   console.log('asset path: ' + path.resolve(assetPath))
 
   // setup HRM for development environment
-  // Step 1: Create & configure a webpack compiler
-  var webpack = require('webpack');
-  var webpackConfig = require('../../config/webpack.dev');
-  var compiler = webpack(webpackConfig);
+  let { webpackDevMiddleware, webpackHotMiddleware } = require('./utils/dev')
 
-  // Step 2: Attach the dev middleware to the compiler & the server
-  app.use(require("webpack-dev-middleware")(compiler, {
-    logLevel: 'warn', publicPath: webpackConfig.output.publicPath
-  }));
+  // attach the dev middleware to the compiler & the server
+  app.use(webpackDevMiddleware);
 
-  // Step 3: Attach the hot middleware to the compiler & the server
-  app.use(require("webpack-hot-middleware")(compiler, {
-    log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
-  }));
+  // attach the hot middleware to the compiler & the server
+  app.use(webpackHotMiddleware);
 }
 
 app.disable('x-powered-by')

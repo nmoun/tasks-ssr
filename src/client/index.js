@@ -14,3 +14,7 @@ ReactDOM.hydrate(<Provider store={configureStore()}>
     </Router>
   </LabelProvider>
 </Provider>, document.getElementById('root'));
+
+if (module.hot) {
+  module.hot.accept();
+}

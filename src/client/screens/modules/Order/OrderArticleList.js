@@ -13,6 +13,8 @@ import { openDialogConfirm, closeDialogConfirm } from 'components/dialogs/Dialog
 import { openDialogScan } from 'components/dialogs/DialogScan'
 import { openDialogInfo } from 'components/dialogs/DialogInfo'
 import * as apiArticle from 'service/ArticleService'
+import { getLabel } from 'labels/LabelProvider'
+
 
 class OrderArticleList extends React.Component{
   constructor(props){
@@ -108,7 +110,7 @@ class OrderArticleList extends React.Component{
 
   render(){
     return <ThemedPage fab={true} handleClickFab={this.openDialogScan}>
-      <Header title={this.props.task.title} leftIcon={ICONS.LEFT} handleClickLeft={this.goBack} rightText="Send" handleClickRight={this.validateTask}/>
+      <Header title={this.props.task.title} leftIcon={ICONS.LEFT} handleClickLeft={this.goBack} rightText={getLabel('task.validate')} handleClickRight={this.validateTask}/>
       {this.props.articles.length > 0 ?
         <ArticleList
           articles={this.props.articles}

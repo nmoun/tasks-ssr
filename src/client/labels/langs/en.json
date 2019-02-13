@@ -1,5 +1,9 @@
 {
   "home.title": "Tasks",
   "home.reload": "Reload",
-  "home.logout": "Logout"
+  "home.logout": "Logout",
+  "welcome.login": "Login",
+  "welcome.register": "Register",
+  "login.send": "Send",
+  "task.validate": "Send"
 }
