@@ -16,5 +16,16 @@ ReactDOM.hydrate(<Provider store={configureStore()}>
 </Provider>, document.getElementById('root'));
 
 if (module.hot) {
-  module.hot.accept();
+  // Components' state is lost without react hot loader
+  module.hot.accept("./App", () => {
+    const NextApp = require('./App').default;
+    ReactDOM.render(<Provider store={configureStore()}>
+      <LabelProvider>
+        <Router>
+          <NextApp />
+        </Router>
+      </LabelProvider>
+    </Provider>, document.getElementById('root'));
+	  }
+  );
 }
