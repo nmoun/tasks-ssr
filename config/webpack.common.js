@@ -1,8 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-console.log('dist folder: '+ path.resolve(__dirname, '../dist'))
-console.log('env: '+ process.env.NODE_ENV)
 const devMode = process.env.NODE_ENV !== 'production'
 
 module.exports = {
@@ -20,8 +18,6 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
       filename: 'styles.css',
     })
   ],
@@ -52,7 +48,7 @@ module.exports = {
         test: /\.(scss)$/,
         use: [
           {
-            loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+            loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader, // extract css in production mode
           }, 
           {
             loader: 'css-loader', // translates CSS into CommonJS modules

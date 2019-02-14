@@ -1,8 +1,9 @@
 const path = require('path')
 const nodeExternals = require('webpack-node-externals');
 
-console.log('process.env.NODE_ENV: ' + process.env.NODE_ENV)
-const devMode = process.env.NODE_ENV !== 'production'
+if(process.env.NODE_ENV !== 'production'){
+  throw new Error('webpack.server should be launched in production mode, only')
+}
 
 module.exports = {
   mode: 'production',
@@ -13,7 +14,7 @@ module.exports = {
   },
   externals: [nodeExternals()],
   entry: './src/server/index.js',
-  devtool: devMode ? 'source-map' : 'false',
+  devtool: 'false',
   resolve: {
     modules: ['node_modules', 'src/client']
   },
@@ -49,7 +50,7 @@ module.exports = {
         use: [{
           loader: 'css-loader', // translates CSS into CommonJS modules
           options: {
-            sourceMap: devMode ? true : false
+            sourceMap: false
           }
         }, {
           loader: 'postcss-loader', // Run post css actions
