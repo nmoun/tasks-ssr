@@ -6,14 +6,14 @@ import { Redirect } from 'react-router-dom'
 
 class Register extends React.Component {
   constructor() {
-    super();
+    super()
     this.state = {}
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleSubmit(event) {
     var comp = this
-    event.preventDefault();
+    event.preventDefault()
     register(this.username.value, this.email.value, this.password.value, this.passwordConf.value)
       .then((response) => {
         if(response.status === 200){
@@ -27,7 +27,7 @@ class Register extends React.Component {
         }
       })
       .catch((err) => {
-        console.log("err: " + err)
+        console.log('err: ' + err)
         comp.setState({errorMessage: err.message})
       })
   }
@@ -51,7 +51,7 @@ class Register extends React.Component {
         <Error message={errorMessage} />
       </div>
     </div>
-    );
+    )
   }
 }
 

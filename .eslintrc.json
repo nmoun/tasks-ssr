@@ -18,7 +18,7 @@
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "camelcase": 2,
-        "indent": ["warn", 2],
+        "indent": ["error", 2],
         "no-eq-null": 2,
         "no-eval": 2,
         "no-inner-declarations": 2,
@@ -26,7 +26,14 @@
         "no-self-compare": 2,
         "no-redeclare": 2,
         "radix": 2,
-        "space-before-function-paren": [ 2, "never" ]
+        "space-before-function-paren": [ 2, "never" ],
+        "semi": [1, "never"],
+        "comma-style": [2, "last"],
+        "dot-location": [2, "property"],
+        "quotes": [1, "single"],
+        "no-multiple-empty-lines": [1, {"max": 1}],
+        "valid-typeof": 2,
+        "no-unreachable": 2
     },
     "plugins": [
         "react"

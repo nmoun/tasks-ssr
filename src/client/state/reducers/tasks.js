@@ -34,7 +34,7 @@ const byId =  function(state = {}, action) {
   default:
     return state
   }
-};
+}
 
 const allIds = (state = [], action) => {
   switch(action.type){
@@ -52,7 +52,7 @@ const allIds = (state = [], action) => {
     return state.filter((id) => (id != action.taskId))
     
   default:
-    return state;
+    return state
   }
 }
 
@@ -64,7 +64,7 @@ export default combineReducers({
 export const getTasks = function(state){
   return state.allIds.map((id) => {
     return state.byId[id]
-  });
+  })
 }
 
 export const getTask = function(state, taskId){

@@ -34,9 +34,9 @@ export default combineReducers({
 })
 
 export const getIsFetching = function(state){
-  return state.isFetchingTasks;
+  return state.isFetchingTasks
 }
 
 export const getNotification = function(state){
-  return state.notification;
+  return state.notification
 }

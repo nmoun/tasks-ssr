@@ -16,4 +16,4 @@ class Reception extends React.Component{
   }
 }
 
-export default withRouter(withTransaction(Reception, {type: "reception", title: "Reception"}))
+export default withRouter(withTransaction(Reception, {type: 'reception', title: 'Reception'}))

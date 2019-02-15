@@ -18,4 +18,4 @@ class Order extends React.Component{
   }
 }
 
-export default withRouter(withTransaction(Order, {type: "order", title: "Order"}))
+export default withRouter(withTransaction(Order, {type: 'order', title: 'Order'}))

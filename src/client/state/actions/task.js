@@ -1,6 +1,6 @@
 export const updateTask = (taskId, fields) =>{
   return  {
-    type: "TASK_UPDATE_TASK",
+    type: 'TASK_UPDATE_TASK',
     taskId,
     fields,
   }

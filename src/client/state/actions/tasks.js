@@ -6,28 +6,28 @@ import { TASK_STATUS } from 'utils/constants'
 
 export const receiveTasks = (response) => {
   return {
-    type: "RECEIVE_TASKS",
+    type: 'RECEIVE_TASKS',
     response
   }
 }
 
 export const createTask = (task) => {
   return {
-    type: "CREATE_TASK",
+    type: 'CREATE_TASK',
     task,
   }
 }
 
 export const deleteTask = (taskId) => {
   return {
-    type: "DELETE_TASK",
+    type: 'DELETE_TASK',
     taskId,
   }
 }
 
 const receiveTask = (response) => {
   return {
-    type: "RECEIVE_TASK",
+    type: 'RECEIVE_TASK',
     response
   }
 }
@@ -37,7 +37,7 @@ const receiveTask = (response) => {
  */
 export const fetchTasks = function(){
   return function(dispatch){
-    dispatch(startFetchingTasks());
+    dispatch(startFetchingTasks())
     return api
       .fetchTasks()
       .then((response) => {
@@ -46,9 +46,9 @@ export const fetchTasks = function(){
       })
       .catch(() => {
         dispatch(stopFetchingTasks())
-        dispatch(displayNotification("Error occured while fetching tasks", 'error'))
-      });
-  };
+        dispatch(displayNotification('Error occured while fetching tasks', 'error'))
+      })
+  }
 }
 
 /**
@@ -57,18 +57,18 @@ export const fetchTasks = function(){
  */
 export const saveTask = function(task){
   return function(dispatch){
-    dispatch(updateTask(task.id, {...task, status: TASK_STATUS.LOADING}));
-    dispatch(saveChanges(task.id));
+    dispatch(updateTask(task.id, {...task, status: TASK_STATUS.LOADING}))
+    dispatch(saveChanges(task.id))
     return api
       .saveTask(task)
       .then((response) => {
         dispatch(receiveTask(response))
         dispatch(deleteTask(response.tmpId))
-        dispatch(displayNotification("Task has been updated"))
+        dispatch(displayNotification('Task has been updated'))
       })
       .catch(() => {
         dispatch(updateTask(task.id, {status: null}))
-        dispatch(displayNotification("Error occured while saving the task", 'error'))
-      });
-  };
+        dispatch(displayNotification('Error occured while saving the task', 'error'))
+      })
+  }
 }

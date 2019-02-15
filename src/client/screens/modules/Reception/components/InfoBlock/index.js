@@ -12,7 +12,7 @@ function InfoBlock(props){
 
   return <div className="info-block" onClick={handleClick}>
     <span className="info-block-text">{props.text}</span>
-    {(props.handleClick) ? <div className="info-block-arrow"></div> : ""}
+    {(props.handleClick) ? <div className="info-block-arrow"></div> : ''}
   </div>
 }
 

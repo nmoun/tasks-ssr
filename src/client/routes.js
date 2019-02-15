@@ -4,26 +4,26 @@ import withAuthentication from 'enhancers/withAuthentication'
 import withTransaction from 'enhancers/withTransaction'
 import Reception from 'screens/modules/Reception'
 import Order from 'screens/modules/Order'
-import Register from 'screens/Register';
-import Login from 'screens/Login';
-import Home from 'screens/Home';
+import Register from 'screens/Register'
+import Login from 'screens/Login'
+import Home from 'screens/Home'
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     exact: true,
     component: withAuthentication(Home)
   },
   {
-    path: "/login",
+    path: '/login',
     component: Login
   },
   {
-    path: "/register",
+    path: '/register',
     component: Register
   },
   {
-    path: "/order",
+    path: '/order',
     component: withAuthentication(Order)
     // component: Loadable({
     //   loader: () => import('screens/modules/Order'),
@@ -35,9 +35,9 @@ const routes = [
     // })
   },
   {
-    path: "/reception",
+    path: '/reception',
     component: withAuthentication(withTransaction(Reception))
   },
-];
+]
 
 export default routes

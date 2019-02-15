@@ -22,11 +22,11 @@ class OrderArticleDetail extends React.Component{
   }
 
   handleChangeValue(articleId, quantity){
-    this.props.updateQuantity(this.props.taskId, articleId, quantity);
+    this.props.updateQuantity(this.props.taskId, articleId, quantity)
   }
 
   goBack(){
-    this.props.history.goBack();
+    this.props.history.goBack()
   }
   
   handleClickNext(){

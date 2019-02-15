@@ -14,7 +14,7 @@ export function taskTests(){
       // const logger = createLogger({});
       // const middlewares = [logger]
       store = createStore(task)
-    });
+    })
 
     describe('actions', () => {
 

@@ -30,13 +30,13 @@ class Home extends React.Component {
   toggleSidePanel() {
     this.setState({
       isDisplayedSidePanel: !this.state.isDisplayedSidePanel,
-    });
+    })
   }
 
   toggleMenu() {
     this.setState({
       isDisplayedMenu: !this.state.isDisplayedMenu,
-    });
+    })
   }
 
   handleBack(){
@@ -59,9 +59,9 @@ class Home extends React.Component {
   }
 
   render() {
-    const { isFetching, tasks } = this.props;
+    const { isFetching, tasks } = this.props
     const leftIcon = this.state.isDisplayedSidePanel ?
-      HEADER_ICONS.LEFT : this.state.isDisplayedMenu ? HEADER_ICONS.RIGHT : HEADER_ICONS.MENU;
+      HEADER_ICONS.LEFT : this.state.isDisplayedMenu ? HEADER_ICONS.RIGHT : HEADER_ICONS.MENU
     return (<ThemedPage fab={true} handleClickFab={this.toggleMenu} fabIcon={ICONS.PLUS}>
       <Header
         title={getLabel('home.title')}

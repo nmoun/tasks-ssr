@@ -5,13 +5,13 @@ import ThemedButton from 'components/buttons/ThemedButton'
 import Error from 'components/Error'
 import { getLabel } from 'labels/LabelProvider'
 
-import "scss/custom.scss";
+import 'scss/custom.scss'
 
 class Login extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { redirectToReferrer: false };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    super(props)
+    this.state = { redirectToReferrer: false }
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount(){
@@ -19,10 +19,10 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     if(!this.username.value || !this.password.value){
-      this.setState({errorMessage: "Mandatory credentials"})
-      return;
+      this.setState({errorMessage: 'Mandatory credentials'})
+      return
     }
 
     authenticate(this.username.value, this.password.value)
@@ -40,14 +40,14 @@ class Login extends React.Component {
         }
       })
       .catch((err) => {
-        console.log("err: " + err)
+        console.log('err: ' + err)
         this.setState({errorMessage: err.message}) 
       })
   }
 
   render() {
     const from = this.props.location.state ? this.props.location.state.from : { pathname: '/' }
-    const { redirectToReferrer, errorMessage } = this.state;
+    const { redirectToReferrer, errorMessage } = this.state
     if (redirectToReferrer)
       return <Redirect
         to={from}
@@ -66,7 +66,7 @@ class Login extends React.Component {
             <Error message={errorMessage} />
           </div>
         </div>
-      );
+      )
   }
 }
 

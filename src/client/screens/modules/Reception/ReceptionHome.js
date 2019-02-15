@@ -7,9 +7,9 @@ import { connect } from 'react-redux'
 import InfoBlock from './components/InfoBlock'
 
 function Reception(props){
-  let {history, task} = props;
+  let {history, task} = props
   let goBack = () => {
-    history.goBack();
+    history.goBack()
   }
   return <ThemedPage>
     <Header title="Reception" leftIcon={ICONS.LEFT} handleClickLeft={goBack}/>

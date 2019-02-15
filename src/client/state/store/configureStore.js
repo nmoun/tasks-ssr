@@ -12,9 +12,9 @@ export const configureStore = () => {
 
   if(module.hot){
     module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers/index');
-      store.replaceReducer(nextRootReducer);
-    });
+      const nextRootReducer = require('../reducers/index')
+      store.replaceReducer(nextRootReducer)
+    })
   }
   return store
 } 
