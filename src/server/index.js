@@ -35,7 +35,7 @@ app.use(helmet.xssFilter())
 app.use(helmet.noSniff())
 app.use(helmet.frameguard({ action: 'sameorigin' }))
 app.use(session({
-  secret: 'wth',
+  secret: process.env.SESSION_SECRET,
   resave: true,
   saveUninitialized: false,
   store: new MongoStore({
