@@ -1,11 +1,10 @@
-
-import * as actions from 'actions/tasks'
 import {expect} from 'chai'
 import { createStore, applyMiddleware } from 'redux'
-import tasks, * as selectors from 'reducers/tasks'
 import { normalize } from 'normalizr'
-import { tasks as tasksSchema } from 'schemas'
 import { createLogger } from 'redux-logger'
+import * as actions from 'state/actions/tasks'
+import tasks, * as selectors from 'state/reducers/tasks'
+import { tasks as tasksSchema } from 'schemas'
 
 export function tasksTests(){
 
@@ -13,9 +12,9 @@ export function tasksTests(){
     let store
 
     before(function() {
-      const logger = createLogger({});
-      const middlewares = [logger]
-      store = createStore(tasks, applyMiddleware(...middlewares))
+      // const logger = createLogger({});
+      // const middlewares = [logger]
+      store = createStore(tasks)
     });
 
     describe('actions', () => {

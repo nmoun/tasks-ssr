@@ -1,9 +1,9 @@
 
-import * as actions from 'actions/articles'
 import {expect} from 'chai'
 import { createStore, applyMiddleware } from 'redux'
-import task from 'reducers/task'
 import { createLogger } from 'redux-logger'
+import task from 'state/reducers/task'
+import * as actions from 'state/actions/task'
 
 export function taskTests(){
 
@@ -11,9 +11,9 @@ export function taskTests(){
     let store
 
     before(function() {
-      const logger = createLogger({});
-      const middlewares = [logger]
-      store = createStore(task, applyMiddleware(...middlewares))
+      // const logger = createLogger({});
+      // const middlewares = [logger]
+      store = createStore(task)
     });
 
     describe('actions', () => {
