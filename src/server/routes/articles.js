@@ -6,16 +6,6 @@ const ObjectId = require('mongoose').Types.ObjectId
 
 const router = express.Router()
 
-router.get('/',  (req, res) => {
-  Article.find().sort({type: 'asc'}).exec((err, result) => {
-    if(err){
-      handleError(err, res)
-    }
-
-    res.send(result)
-  })
-})
-
 router.get('/:articleCode',  (req, res) => {
   const articleCode = (/^[a-fA-F0-9]{24}$/).test(req.params.articleCode) ? ObjectId(req.params.articleCode) : req.params.articleCode
   
@@ -34,6 +24,9 @@ router.get('/:articleCode',  (req, res) => {
     })
 })
 
+/**
+ * Returns articles whose code or description contains the given parameter
+ */
 router.get('/suggest/:searched',  (req, res) => {
   const searched = req.params.searched
   const searchedRegexp = new RegExp(`.*${searched}.*`, 'i')
