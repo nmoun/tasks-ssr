@@ -23,7 +23,7 @@ class TaskMenu extends React.Component{
   }
 
   render(){
-    let classMenu = this.props.isDisplayed ? "task-menu" : "task-menu hidden",
+    let classMenu = this.props.isDisplayed ? 'task-menu' : 'task-menu hidden',
       { history } = this.props,
       // hard coded for now
       entries = [{
@@ -45,7 +45,7 @@ class TaskMenu extends React.Component{
         label: 'Transfer (WIP)',
       }]
     
-    if(this.state.activateTransitions) classMenu += " task-menu-transitions"
+    if(this.state.activateTransitions) classMenu += ' task-menu-transitions'
 
     return <div className="task-menu-container">
       <div className={classMenu}>

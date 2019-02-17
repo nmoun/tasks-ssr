@@ -3,18 +3,18 @@ import Task from '../models/tasks'
 import { handleError } from '../db'
 import logger from '../utils/logger'
 
-const router = express.Router();
+const router = express.Router()
 
 // Dummy validation of the order task
 router.put('/:task?',  (req, res) => {
-  const taskId = req.params.task;
+  const taskId = req.params.task
   if(!taskId){
     res.statusCode(400).send('Task id is incorrect')
   } else if(isNaN(taskId)) {
     logger(req, res, 'Task exists only on client')
     // Fake latency
     setTimeout(() => {
-      res.sendStatus(200);
+      res.sendStatus(200)
     }, 1500)
   } else {
     // Delete
@@ -25,7 +25,7 @@ router.put('/:task?',  (req, res) => {
           if (err) handleError(err, res)
           // Fake latency
           setTimeout(() => {
-            res.sendStatus(200);
+            res.sendStatus(200)
           }, 1500)
         })
       }else {

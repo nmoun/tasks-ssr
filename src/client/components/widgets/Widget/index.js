@@ -10,7 +10,7 @@ class Widget extends React.Component {
 
   render(){
     const classWidget = 'rounded widget text-white' + (this.props.className ? ' ' + this.props.className : ''),
-      classIcon = "widget-right" + (this.props.icon ? ' ' + this.props.icon : '')
+      classIcon = 'widget-right' + (this.props.icon ? ' ' + this.props.icon : '')
     return <div className={classWidget}>
       <div className="widget-left">
         <span>{this.props.title}</span>

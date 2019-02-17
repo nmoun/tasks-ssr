@@ -5,7 +5,7 @@ import './style.scss'
 
 function DialogInfo(props) {
   const close = () => {
-    fromDialog.closeDialog();
+    fromDialog.closeDialog()
   }
   return <div>
     <div className="dialog-info-msg-container">{props.message}</div>

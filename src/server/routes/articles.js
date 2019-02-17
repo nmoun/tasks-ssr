@@ -4,7 +4,7 @@ import { handleError } from '../db'
 
 const ObjectId = require('mongoose').Types.ObjectId
 
-const router = express.Router();
+const router = express.Router()
 
 router.get('/',  (req, res) => {
   Article.find().sort({type: 'asc'}).exec((err, result) => {
@@ -22,9 +22,9 @@ router.get('/:articleCode',  (req, res) => {
   Article.aggregate()
     .match({$or: [
       { _id: articleCode },
-      { codes: { $in: [articleCode, "$codes"] }}
+      { codes: { $in: [articleCode, '$codes'] }}
     ]})
-    .project({id: "$_id", description: 1, composition: 1, codes: 1})
+    .project({id: '$_id', description: 1, composition: 1, codes: 1})
     .project({_id: 0})
     .exec((err, result) => {
       if(err){
@@ -42,10 +42,10 @@ router.get('/suggest/:searched',  (req, res) => {
     .match({ $or:
       [
         { description: { $regex: searchedRegexp} },
-        { codes: { $in: [searchedRegexp, "$codes"]} }
+        { codes: { $in: [searchedRegexp, '$codes']} }
       ]
     })
-    .project({id: "$_id", label: "$description"})
+    .project({id: '$_id', label: '$description'})
     .project({_id: 0})
     .limit(5)
     .exec((err, result) => {
@@ -55,6 +55,5 @@ router.get('/suggest/:searched',  (req, res) => {
       res.send(result)
     })
 })
-
 
 module.exports = router

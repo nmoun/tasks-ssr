@@ -6,7 +6,7 @@ export const task = new schema.Entity('tasks', {}, {
     return {...entity, status: null}
   }
 })
-export const tasks = [task];
+export const tasks = [task]
 
 /**
  * normalizr does not take processStrategy into account for denormalization

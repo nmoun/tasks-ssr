@@ -1,4 +1,4 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './test/client/testBrowser.js',
@@ -9,7 +9,7 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
         exclude: [/node_modules/, /framework/],
         use: [
@@ -40,4 +40,4 @@ module.exports = {
   node: {
     fs: 'empty'
   }
-};
+}

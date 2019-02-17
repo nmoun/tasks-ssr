@@ -7,7 +7,7 @@ class LoadingList extends React.Component {
     super(props)
   }
   render() {
-    let arr = [];
+    let arr = []
     for(let i = 0 ; i < LoadingList.NUMBER; ++i){
       arr.push(<Widget key={i} className="loading-list__widget"/>)
     }

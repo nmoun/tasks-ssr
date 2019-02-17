@@ -3,7 +3,7 @@ import React from 'react'
 import './style.scss'
 
 function QuantityBlock(props){
-  let textInput = React.createRef();
+  let textInput = React.createRef()
 
   function handleClick() {
     textInput.current.focus()
@@ -29,6 +29,5 @@ function QuantityBlock(props){
       maxLength="4"/>
   </div>
 }
-
 
 export default QuantityBlock

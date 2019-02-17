@@ -7,14 +7,14 @@ function Notify(props){
       props.handleClick()
     }
   }
-  let classText = "notify-text"
+  let classText = 'notify-text'
   switch(props.status){
   case 'error':
     classText += ' notify-error'
-    break;
+    break
   case 'success':
     classText += ' notify-success'
-    break;
+    break
   default:
     classText += ' notify-info'
   }

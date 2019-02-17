@@ -23,8 +23,8 @@ function Dialog(props){
 }
 
 export function openDialog(content, props){
-  const container = document.createElement("div")
-  container.setAttribute("id", "dialog-container")
+  const container = document.createElement('div')
+  container.setAttribute('id', 'dialog-container')
   const {isDismissible, showOverflow, ...rest} = props
   const Content = content
   ReactDOM.render(<Dialog isDismissible={isDismissible} showOverflow={showOverflow}>
@@ -33,9 +33,9 @@ export function openDialog(content, props){
 }
 
 export function closeDialog(){
-  const container = document.getElementById("dialog-container")
+  const container = document.getElementById('dialog-container')
   if(container){
-    ReactDOM.unmountComponentAtNode(container);
-    document.body.removeChild(container); 
+    ReactDOM.unmountComponentAtNode(container)
+    document.body.removeChild(container) 
   } 
 }

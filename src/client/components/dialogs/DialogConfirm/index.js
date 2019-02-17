@@ -18,5 +18,5 @@ export function openDialogConfirm(props){
 }
 
 export function closeDialogConfirm(){
-  fromDialog.closeDialog();
+  fromDialog.closeDialog()
 }

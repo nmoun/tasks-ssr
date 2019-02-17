@@ -46,8 +46,8 @@ class ArticleCell extends React.Component {
   }
 
   render(){
-    const classTop = "article-cell-top" + (this.props.handleClickLeft ? " clickable" : "")
-    const classRemove = this.state.removeDisplayed ? "clickable" : "article-cell-bottom-hidden"
+    const classTop = 'article-cell-top' + (this.props.handleClickLeft ? ' clickable' : '')
+    const classRemove = this.state.removeDisplayed ? 'clickable' : 'article-cell-bottom-hidden'
 
     return <div className="article-cell ">
       <div className={classTop}>

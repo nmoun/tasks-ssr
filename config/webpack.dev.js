@@ -1,6 +1,6 @@
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
-var webpack = require('webpack');
+const merge = require('webpack-merge')
+const common = require('./webpack.common.js')
+var webpack = require('webpack')
 
 const devConfig = merge(common, {
   mode: 'development',
@@ -18,9 +18,9 @@ const devConfig = merge(common, {
           options: {
             // overrides .babelrc to include styles in client bundle generation
             // (it is excluded for server launch with babel-node)
-            plugins: [["./external/babel-plugin-ignore-imports", 
+            plugins: [['./external/babel-plugin-ignore-imports', 
               {
-                "extensions": []
+                'extensions': []
               }
             ]]
           }
@@ -32,6 +32,6 @@ const devConfig = merge(common, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
   ],
-});
+})
 console.log(JSON.stringify(devConfig, null, 2))
 module.exports = devConfig

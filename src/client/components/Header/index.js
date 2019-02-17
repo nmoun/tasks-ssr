@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 import './style.scss'
 
@@ -7,7 +7,7 @@ import './style.scss'
  * @param {string} leftIcon - possible values in ICONS
  */
 function Header(props){
-  let classLeft = 'header-left clickable' + (props.leftIcon ? ' ' + props.leftIcon : '');
+  let classLeft = 'header-left clickable' + (props.leftIcon ? ' ' + props.leftIcon : '')
 
   return <div className='header'>
     <div className={classLeft} onClick={props.handleClickLeft}>

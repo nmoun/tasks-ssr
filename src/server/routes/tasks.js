@@ -3,7 +3,7 @@ import Task from '../models/tasks'
 import {handleError} from '../db'
 import logger from '../utils/logger'
 
-const router = express.Router();
+const router = express.Router()
 
 router.get('/',  (req, res) => {
   Task.find().sort({type: 'asc'}).exec((err, result) => {
@@ -18,7 +18,7 @@ router.get('/',  (req, res) => {
 })
 
 router.put('/:task?',  (req, res) => {
-  const taskId = req.params.task;
+  const taskId = req.params.task
   if(!taskId || isNaN(taskId)){
     // Create
     logger(req, res, 'id not valid or given: creation of task')
@@ -29,7 +29,7 @@ router.put('/:task?',  (req, res) => {
       if(err){
         handleError(err, res)
       }
-      const id = parseInt(task.id, 10) + 1;
+      const id = parseInt(task.id, 10) + 1
       logger(req, res, 'task creation: new id: ' + id)
       Task.create({id, title, subtitle, type, header, articles}, (err, createdTask) => {
         if(err){
@@ -50,7 +50,7 @@ router.put('/:task?',  (req, res) => {
 
       const { title, subtitle, header, articles } = req.body
       if(task){
-        logger(req, res, "task update with:")
+        logger(req, res, 'task update with:')
         logger(req, res, JSON.stringify({title, subtitle, header, articles}))
         task.set({title, subtitle, header, articles})
         task.save(function(err, updatedTask) {
@@ -58,9 +58,9 @@ router.put('/:task?',  (req, res) => {
           
           // Fake  latency
           setTimeout(() => {
-            res.send({task: updatedTask, tmpId: null});
+            res.send({task: updatedTask, tmpId: null})
           }, 1500)
-        });
+        })
       }
     })
   }

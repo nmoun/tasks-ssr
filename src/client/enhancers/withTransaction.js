@@ -26,7 +26,7 @@ function withTransaction(WrappedComponent, defaultTaskFields){
 
       if(props.location.hash.length > 0){
         this.state.currentTaskId = props.location.hash.slice(1)
-        props.startTransaction(this.state.currentTaskId, props.task);
+        props.startTransaction(this.state.currentTaskId, props.task)
       }else {
         // Root route: create a temporary task and display it
         const { history } = props,

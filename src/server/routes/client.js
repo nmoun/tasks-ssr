@@ -1,21 +1,21 @@
 // Contains client generation
 import express from 'express'
 import React from 'react'
-import { StaticRouter } from "react-router-dom"
+import { StaticRouter } from 'react-router-dom'
 import ReactDOMServer from 'react-dom/server'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import App from '../../client/App'
 import LabelProvider from '../../client/labels/LabelProvider'
 import defaultLang from '../../client/labels/langs/en.json'
-import reducer from "../../client/state/reducers"
+import reducer from '../../client/state/reducers'
 
-let router = express.Router();
+let router = express.Router()
 
 router.get('/',  (req, res) => {
   // Create a new Redux store instance
   const store = createStore(reducer)
-  const context = {};
+  const context = {}
   const jsx = (
     <Provider store={store}>
       <LabelProvider>
@@ -24,13 +24,12 @@ router.get('/',  (req, res) => {
         </StaticRouter>
       </LabelProvider>
     </Provider>
-  );
-  const reactDom = ReactDOMServer.renderToString(jsx);
+  )
+  const reactDom = ReactDOMServer.renderToString(jsx)
 
-  res.writeHead(200, { "Content-Type": "text/html" });
-  res.end(htmlTemplate(reactDom, store.getState(), defaultLang));
+  res.writeHead(200, { 'Content-Type': 'text/html' })
+  res.end(htmlTemplate(reactDom, store.getState(), defaultLang))
 })
-
 
 function htmlTemplate(reactDom, preloadedState, language) {
   return `
@@ -53,7 +52,7 @@ function htmlTemplate(reactDom, preloadedState, language) {
           <script src="./main.bundle.js"></script>
       </body>
       </html>
-  `;
+  `
 }
 
 module.exports = router

@@ -1,5 +1,5 @@
 const path = require('path')
-const nodeExternals = require('webpack-node-externals');
+const nodeExternals = require('webpack-node-externals')
 
 if(process.env.NODE_ENV !== 'production'){
   throw new Error('webpack.server should be launched in production mode, only')
@@ -25,7 +25,7 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
@@ -59,7 +59,7 @@ module.exports = {
               return [
                 require('precss'),
                 require('autoprefixer')
-              ];
+              ]
             }
           }
         }, {
@@ -80,4 +80,4 @@ module.exports = {
       },
     ]
   },
-};
+}

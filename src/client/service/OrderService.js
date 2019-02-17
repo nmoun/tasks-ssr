@@ -16,5 +16,5 @@ export function validateTask(task) {
   }).catch(error => {
     console.log('error: ' + error)
     throw new Error(error)
-  });
+  })
 };

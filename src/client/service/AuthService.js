@@ -1,19 +1,19 @@
 import {JWT_TOKEN} from 'utils/constants'
-import decode from 'jwt-decode';
+import decode from 'jwt-decode'
 
 function getTokenExpirationDate(encodedToken) {
-  const token = decode(encodedToken);
-  if (!token.exp) { return null; }
+  const token = decode(encodedToken)
+  if (!token.exp) { return null }
 
-  const date = new Date(0);
-  date.setUTCSeconds(token.exp);
+  const date = new Date(0)
+  date.setUTCSeconds(token.exp)
 
-  return date;
+  return date
 }
 
 function isTokenExpired(token) {
-  const expirationDate = getTokenExpirationDate(token);
-  return expirationDate < new Date();
+  const expirationDate = getTokenExpirationDate(token)
+  return expirationDate < new Date()
 }
 
 export function authenticate(username, password) {
@@ -29,7 +29,7 @@ export function authenticate(username, password) {
   })
     .then((res) => {
       if (res.status === 200) {
-        console.log("login success")
+        console.log('login success')
         return res.json()
       }
     })
@@ -52,15 +52,15 @@ export function logout() {
     credentials: 'same-origin'
   }).then((res) => {
     if (res.status === 200) {
-      console.log("logout success")
+      console.log('logout success')
       localStorage.removeItem(JWT_TOKEN)
     }
-  });
+  })
 };
 
 export function isLoggedIn(){
-  const idToken = typeof localStorage !== 'undefined' && localStorage.getItem(JWT_TOKEN);
-  return !!idToken && !isTokenExpired(idToken);
+  const idToken = typeof localStorage !== 'undefined' && localStorage.getItem(JWT_TOKEN)
+  return !!idToken && !isTokenExpired(idToken)
 }
 
 export function register(username, email, password, passwordConf){

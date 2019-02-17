@@ -13,7 +13,7 @@ export function fetchArticle(articleCode) {
     return res.json()
   }).catch(error => {
     console.log('error: ' + error)
-  });
+  })
 };
 
 export function fetchArticleSuggest(searched) {
@@ -29,5 +29,5 @@ export function fetchArticleSuggest(searched) {
     return res.json()
   }).catch(error => {
     console.log('error: ' + error)
-  });
+  })
 };

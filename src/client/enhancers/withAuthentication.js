@@ -9,7 +9,7 @@ export default function withAuthentication(WrappedComponent){
     } else {
       return <Welcome />
     }
-  };
+  }
 
   return WithAuthentication
 }

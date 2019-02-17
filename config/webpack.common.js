@@ -1,5 +1,5 @@
 const path = require('path')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const devMode = process.env.NODE_ENV !== 'production'
 
@@ -24,7 +24,7 @@ module.exports = {
   module: {
     rules: [
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
@@ -62,7 +62,7 @@ module.exports = {
                 return [
                   require('precss'),
                   require('autoprefixer')
-                ];
+                ]
               }
             }
           }, {
@@ -84,4 +84,4 @@ module.exports = {
       },
     ]
   },
-};
+}

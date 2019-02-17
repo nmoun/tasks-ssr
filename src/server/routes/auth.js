@@ -1,7 +1,7 @@
-import express from 'express';
+import express from 'express'
 import User from '../models/users'
 import passport from 'passport'
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'
 import logger from '../utils/logger'
 
 const router = express.Router()
@@ -10,7 +10,7 @@ router.post('/register', function(req, res, next) {
   if (req.body.password !== req.body.passwordConf) {
     return res.status(400).json({
       message: 'Passwords do not match.'
-    });
+    })
   }
 
   if (req.body.email &&
@@ -26,21 +26,21 @@ router.post('/register', function(req, res, next) {
 
     User.create(userData, function(error) {
       if (error) {
-        return next(error);
+        return next(error)
       } else {
         // req.session.userId = user._id;
         res.json({ status: 'ok' })
       }
-    });
+    })
   }
-});
+})
 
 router.post('/login', function(req, res, next){
 
   if(!req.body.username || !req.body.password){
     return res.status(400).json({
       message: 'Mandatory credentials',
-    });
+    })
   }
 
   passport.authenticate('local', { session: false }, (err, user) => {
@@ -48,29 +48,29 @@ router.post('/login', function(req, res, next){
     if (err || !user) {
       return res.status(400).json({
         message: 'Wrong credentials'
-      });
+      })
     }
 
     req.login(user, { session: false }, (err) => {
       if (err) {
         return res.status(400).json({
           message: 'Wrong credentials',
-        });
+        })
       }
 
       // generate a signed son web token with the contents of user object and return it in the response
-      const token = jwt.sign(user, process.env.JWT_SECRET, {expiresIn: '2h'});
+      const token = jwt.sign(user, process.env.JWT_SECRET, {expiresIn: '2h'})
       logger(req, res, '/login: success, token: ' + token)
-      return res.json({ user, token });
-    });
-  })(req, res, next);
+      return res.json({ user, token })
+    })
+  })(req, res, next)
 })
 
 router.post('/logout', (req, res, next) => {
-  req.session.destroy();
-  next();
+  req.session.destroy()
+  next()
 }, (req, res) => {
-  req.logout();
+  req.logout()
   res.redirect('/')
 })
 

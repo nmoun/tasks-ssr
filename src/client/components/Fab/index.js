@@ -6,7 +6,7 @@ function Fab(props){
     if(props.handleClickFab)
       props.handleClickFab()
   }
-  const classImage = "fab-image " + (props.icon ? props.icon : ICONS.BARCODE)
+  const classImage = 'fab-image ' + (props.icon ? props.icon : ICONS.BARCODE)
   return <div className="fab clickable" onClick={handleClick}><div className={classImage}/></div>
 }
 

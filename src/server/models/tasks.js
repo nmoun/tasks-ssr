@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 import { ArticleSchema } from './articles'
 
 var TaskSchema = new mongoose.Schema({
@@ -26,8 +26,7 @@ var TaskSchema = new mongoose.Schema({
   },
   content: Object,
   articles: [ArticleSchema]
-});
+})
 
-
-var Task = mongoose.model('Task', TaskSchema);
-module.exports = Task;
+var Task = mongoose.model('Task', TaskSchema)
+module.exports = Task

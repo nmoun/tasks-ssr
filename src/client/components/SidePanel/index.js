@@ -22,8 +22,8 @@ class SidePanel extends React.Component {
   }
 
   render(){
-    let className = this.props.isDisplayed === true ? "side-panel displayed" : "side-panel";
-    if(this.state.activateTransitions) className += " side-panel-transitions"
+    let className = this.props.isDisplayed === true ? 'side-panel displayed' : 'side-panel'
+    if(this.state.activateTransitions) className += ' side-panel-transitions'
     return <div className='side-panel-container'>
       <div className={className}>
         <Menu entries={this.props.entries}/>

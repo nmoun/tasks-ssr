@@ -2,7 +2,6 @@ import React from 'react'
 
 import './style.scss'
 
-
 class Autocomplete extends React.Component {
   /**
    * @param {Object} props 
@@ -88,21 +87,21 @@ class Autocomplete extends React.Component {
   }
 
   render(){
-    const width = this.props.width ? this.props.width : "200px",
+    const width = this.props.width ? this.props.width : '200px',
       options = this.props.options ? this.props.options : []
     return <div className="autocomplete"  >
       <input
         onKeyDown={this.handleKeyDown}
         style={{width: width}}
-        ref={(input) => { this.input = input; }}
+        ref={(input) => { this.input = input }}
         type="text"
         value={this.props.value}
         className="autocomplete-input"
         onChange={this.props.handleChange}/>
       <ul style={{width: width}} className="autocomplete-list">
         {options.map((option, index) => {
-          let classEntry = "autocomplete-entry clickable"
-          classEntry += index === this.state.selected ? " autocomplete-entry-selected" : ""
+          let classEntry = 'autocomplete-entry clickable'
+          classEntry += index === this.state.selected ? ' autocomplete-entry-selected' : ''
           return (
             <li
               key={option.id}
