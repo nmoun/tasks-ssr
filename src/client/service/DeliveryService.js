@@ -4,7 +4,7 @@ import { denormalizeTask } from 'schemas'
 export function validateTask(task) {
   const taskId = task.id,
     body = JSON.stringify(denormalizeTask(task))
-  return fetch(`/api/orders/${taskId}`, {
+  return fetch(`/api/deliveries/${taskId}`, {
     method: 'PUT',
     headers: {
       'Accept': 'application/json, text/plain, */*',

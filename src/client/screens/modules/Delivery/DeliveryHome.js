@@ -1,5 +1,7 @@
 import React from 'react'
 import Header, { ICONS } from 'components/Header'
+import { validateTask } from 'state/actions/delivery'
+import { connect } from 'react-redux'
 import ThemedPage from 'components/layout/ThemedPage'
 import InfoBlock from './components/InfoBlock'
 import { getLabel } from 'labels/LabelProvider'
@@ -17,7 +19,10 @@ class DeliveryHome extends React.Component {
   }
 
   validateTask(){
-    console.log('TODO launch delivery validation')
+    this.props.validateTask({
+      ...this.props.task,
+      subtitle: this.props.articles.length + ' article(s)'
+    })
     this.props.history.goBack()
   }
 
@@ -32,4 +37,4 @@ class DeliveryHome extends React.Component {
   }
 }
 
-export default DeliveryHome
+export default connect(null, {validateTask})(DeliveryHome)
