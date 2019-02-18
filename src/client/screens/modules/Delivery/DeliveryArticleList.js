@@ -2,11 +2,8 @@ import React from 'react'
 import Header, { ICONS } from 'components/Header'
 import ThemedPage from 'components/layout/ThemedPage'
 import ArticleList from 'components/ArticleList'
-import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getTask, getTaskArticles, hasTaskChanged } from 'state/reducers'
 import { updateQuantity, addArticle, deleteArticle, incrementArticle } from 'state/actions/task'
-import { discardChanges } from 'state/actions/transaction'
 import { openDialogScan } from 'components/dialogs/DialogScan'
 import { openDialogInfo } from 'components/dialogs/DialogInfo'
 import * as apiArticle from 'service/ArticleService'
@@ -88,21 +85,14 @@ class DeliveryArticleList extends React.Component{
   }
 }
 
-const mapStateToProps = (state, props) => ({
-  task: getTask(state, props.taskId),
-  articles: getTaskArticles(state, props.taskId),
-  hasTaskChanged: hasTaskChanged(state, props.taskId)
-})
-
 const mapDispatchToProps = {
   updateQuantity,
-  discardChanges,
   addArticle,
   deleteArticle,
   incrementArticle,
 }
 
-export default withRouter(connect(
-  mapStateToProps,
+export default connect(
+  null,
   mapDispatchToProps
-)(DeliveryArticleList))
+)(DeliveryArticleList)

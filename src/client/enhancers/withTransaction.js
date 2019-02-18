@@ -1,7 +1,8 @@
 import React from 'react'
-import { getTask } from 'state/reducers'
-import { startTransaction, stopTransaction } from 'state/actions/transaction'
-import { createTask } from 'state/actions/tasks'
+import { getTask, getTaskArticles, hasTaskChanged } from 'state/reducers'
+import { startTransaction, stopTransaction, discardChanges } from 'state/actions/transaction'
+import { createTask, saveTask } from 'state/actions/tasks'
+import { openDialogConfirm, closeDialogConfirm } from 'components/dialogs/DialogConfirm'
 import { connect } from 'react-redux'
 import { generateTmpId } from 'utils/functions'
 import { TASK_STATUS } from 'utils/constants'
@@ -19,18 +20,21 @@ function withTransaction(WrappedComponent, defaultTaskFields){
         currentTaskId: null
       }
 
+      this.exitTask = this.exitTask.bind(this)
+
       if(props.task && props.task.status === TASK_STATUS.LOADING){
         openDialogInfo({message: 'Task is being processed'})
         props.history.goBack()
       }
 
-      // Extract task id
-      let arr = new RegExp(props.match.path + '/([^/]+).*$').exec(props.location.pathname),
-        taskId = arr ? arr[1] : null
+      let taskId
+      if(props.match.params.taskId){
+        taskId = props.match.params.taskId
+      }
 
       if(taskId){
         this.state.currentTaskId = taskId
-        props.startTransaction(this.state.currentTaskId, props.task)
+        props.startTransaction(this.state.currentTaskId)
       }else {
         // Create a temporary task and display it
         const { history } = props,
@@ -42,12 +46,40 @@ function withTransaction(WrappedComponent, defaultTaskFields){
       }
     }
 
+    /**
+     * Exits the task and go back to the task list
+     */
+    exitTask(){
+      const { history } = this.props
+      if(!this.props.hasTaskChanged){
+        history.goBack()
+      } else {
+        openDialogConfirm({
+          isDismissible: true,
+          message: 'Save changes?', 
+          handleYes: () => {
+            this.props.saveTask({
+              ...this.props.task,
+              subtitle: this.props.articles.length + ' article(s)'
+            })
+            closeDialogConfirm()
+            history.goBack()
+          }, 
+          handleNo: () => {
+            this.props.discardChanges(this.props.task.id)
+            closeDialogConfirm()
+            history.goBack()
+          }
+        })
+      }
+    }
+
     componentWillUnmount(){
       this.props.stopTransaction(this.state.currentTaskId)
     }
 
     render(){
-      return <WrappedComponent taskId={this.state.currentTaskId} {...this.props} />
+      return <WrappedComponent taskId={this.state.currentTaskId} exitTask={this.exitTask} {...this.props} />
     }
   }
 
@@ -55,11 +87,15 @@ function withTransaction(WrappedComponent, defaultTaskFields){
     startTransaction,
     stopTransaction,
     createTask,
+    discardChanges,
+    saveTask,
   }
 
   const mapStateToProps = (state, ownProps) => {
     return {
-      task: getTask(state, ownProps.location.hash.slice(1))
+      task: getTask(state, ownProps.match.params.taskId),
+      articles: getTaskArticles(state, ownProps.match.params.taskId),
+      hasTaskChanged: hasTaskChanged(state, ownProps.match.params.taskId)
     }
   }
 

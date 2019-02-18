@@ -31,13 +31,15 @@ class OrderArticleDetail extends React.Component{
   
   handleClickNext(){
     if(this.props.nextId){
-      this.props.history.replace(`/order/${this.props.taskId}/${this.props.nextId}`)
+      const newUrl = this.props.match.url.replace(/[^/]+$/, this.props.nextId)
+      this.props.history.replace(newUrl)
     }
   }
 
   handleClickPrevious(){
     if(this.props.previousId){
-      this.props.history.replace(`/order/${this.props.taskId}/${this.props.previousId}`)
+      const newUrl = this.props.match.url.replace(/[^/]+$/, this.props.previousId)
+      this.props.history.replace(newUrl)
     }
   }
 
@@ -56,7 +58,6 @@ class OrderArticleDetail extends React.Component{
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    articles: selectors.getTaskArticles(state, ownProps.taskId),
     article: selectors.getTaskArticle(state, ownProps.taskId, ownProps.articleId),
     nextId: selectors.getTaskArticleNext(state, ownProps.taskId, ownProps.articleId),
     previousId: selectors.getTaskArticlePrevious(state, ownProps.taskId, ownProps.articleId),
@@ -68,4 +69,4 @@ const mapDispatchToProps = {
   updateQuantity
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OrderArticleDetail))
+export default connect(mapStateToProps, mapDispatchToProps)(OrderArticleDetail)

@@ -22,7 +22,7 @@ const routes = [
     component: Register
   },
   {
-    path: '/order',
+    path: '/order/:taskId',
     component: withAuthentication(Order)
     // component: Loadable({
     //   loader: () => import('screens/modules/Order'),
@@ -34,7 +34,7 @@ const routes = [
     // })
   },
   {
-    path: '/delivery',
+    path: '/delivery/:taskId',
     component: withAuthentication(Delivery)
   },
 ]

@@ -16,7 +16,6 @@ export function startTransaction(taskId, task){
   return {
     type: 'START_TRANSACTION',
     taskId,
-    task,
   }
 }
 

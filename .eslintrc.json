@@ -18,7 +18,7 @@
         "react/jsx-uses-react": "error",
         "react/jsx-uses-vars": "error",
         "camelcase": 2,
-        "indent": ["error", 2],
+        "indent": ["warn", 2],
         "no-eq-null": 2,
         "no-eval": 2,
         "no-inner-declarations": 2,

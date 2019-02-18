@@ -3,7 +3,6 @@ import ArticleCell from 'components/ArticleCell'
 import ThemedPage from 'components/layout/ThemedPage'
 import Header, { ICONS } from 'components/Header'
 import * as selectors from 'state/reducers'
-import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { updateQuantity } from 'state/actions/task'
 import Footer from 'components/Footer'
@@ -58,7 +57,6 @@ class DeliveryArticleDetail extends React.Component{
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    articles: selectors.getTaskArticles(state, ownProps.taskId),
     article: selectors.getTaskArticle(state, ownProps.taskId, ownProps.articleId),
     nextId: selectors.getTaskArticleNext(state, ownProps.taskId, ownProps.articleId),
     previousId: selectors.getTaskArticlePrevious(state, ownProps.taskId, ownProps.articleId),
@@ -70,4 +68,4 @@ const mapDispatchToProps = {
   updateQuantity
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DeliveryArticleDetail))
+export default connect(mapStateToProps, mapDispatchToProps)(DeliveryArticleDetail)
