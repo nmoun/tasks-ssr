@@ -6,16 +6,12 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getTask, getTaskArticles, hasTaskChanged } from 'state/reducers'
 import { updateQuantity, addArticle, deleteArticle, incrementArticle } from 'state/actions/task'
-import { saveTask } from 'state/actions/tasks'
 import { discardChanges } from 'state/actions/transaction'
-import { validateTask } from 'state/actions/order'
-import { openDialogConfirm, closeDialogConfirm } from 'components/dialogs/DialogConfirm'
 import { openDialogScan } from 'components/dialogs/DialogScan'
 import { openDialogInfo } from 'components/dialogs/DialogInfo'
 import * as apiArticle from 'service/ArticleService'
-import { getLabel } from 'labels/LabelProvider'
 
-class OrderArticleList extends React.Component{
+class DeliveryArticleList extends React.Component{
   constructor(props){
     super(props)
     this.handleChangeValue = this.handleChangeValue.bind(this)
@@ -24,7 +20,6 @@ class OrderArticleList extends React.Component{
     this.handleClickRemoval = this.handleClickRemoval.bind(this)
     this.openDialogScan = this.openDialogScan.bind(this)
     this.goBack = this.goBack.bind(this)
-    this.validateTask = this.validateTask.bind(this)
   }
 
   handleChangeValue(articleId, quantity){
@@ -75,41 +70,12 @@ class OrderArticleList extends React.Component{
    * Go back to the task list
    */
   goBack(){
-    const { history } = this.props
-    if(!this.props.hasTaskChanged){
-      history.goBack()
-    } else {
-      openDialogConfirm({
-        isDismissible: true,
-        message: 'Save changes?', 
-        handleYes: () => {
-          this.props.saveTask({
-            ...this.props.task,
-            subtitle: this.props.articles.length + ' article(s)'
-          })
-          closeDialogConfirm()
-          history.goBack()
-        }, 
-        handleNo: () => {
-          this.props.discardChanges(this.props.taskId)
-          closeDialogConfirm()
-          history.goBack()
-        }
-      })
-    }
-  }
-
-  validateTask(){
-    this.props.validateTask({
-      ...this.props.task,
-      subtitle: this.props.articles.length + ' article(s)'
-    })
     this.props.history.goBack()
   }
 
   render(){
     return <ThemedPage fab={true} handleClickFab={this.openDialogScan}>
-      <Header title={this.props.task.title} leftIcon={ICONS.LEFT} handleClickLeft={this.goBack} rightText={getLabel('task.validate')} handleClickRight={this.validateTask}/>
+      <Header title={this.props.task.title} leftIcon={ICONS.LEFT} handleClickLeft={this.goBack}/>
       {this.props.articles.length > 0 ?
         <ArticleList
           articles={this.props.articles}
@@ -134,11 +100,9 @@ const mapDispatchToProps = {
   addArticle,
   deleteArticle,
   incrementArticle,
-  saveTask,
-  validateTask
 }
 
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(OrderArticleList))
+)(DeliveryArticleList))

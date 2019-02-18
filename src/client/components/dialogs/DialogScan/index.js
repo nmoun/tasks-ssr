@@ -81,10 +81,11 @@ class DialogScan extends React.Component {
   }
 
   render(){
+    const img = this.props.img ? this.props.img : 'dialog-scan-img-barcode'
     return (
       <div onKeyDown={this.handleKeyDown}>
         <div className="dialog-scan-img-container">
-          <div className="dialog-scan-img" />
+          <div className={`dialog-scan-img ${img}`} />
         </div>
         <div className="dialog-scan-msg-container">{this.props.message}</div>
         <div className="dialog-scan-input-container">

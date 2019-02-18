@@ -12,8 +12,11 @@
   height: 100px;
 }
 
-.dialog-scan-img {
+.dialog-scan-img-barcode {
   background-image: url('../../../assets/barcode.svg');
+}
+
+.dialog-scan-img {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100px;

@@ -4,6 +4,9 @@ import OrderArticleList from './OrderArticleList'
 import OrderArticleDetail from './OrderArticleDetail'
 import withTransaction from 'enhancers/withTransaction'
 
+/**
+ * Handles navigation in module to order articles
+ */
 class Order extends React.Component{
 
   constructor(props){

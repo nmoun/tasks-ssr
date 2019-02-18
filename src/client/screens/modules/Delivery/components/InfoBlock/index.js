@@ -10,9 +10,12 @@ function InfoBlock(props){
     }
   }
 
-  return <div className="info-block" onClick={handleClick}>
+  const clickable = typeof props.handleClick !== 'undefined',
+    blockClass = 'info-block' + ((clickable) ? ' clickable' : '')
+
+  return <div className={blockClass} onClick={handleClick}>
     <span className="info-block-text">{props.text}</span>
-    {(props.handleClick) ? <div className="info-block-arrow"></div> : ''}
+    {(clickable) ? <div className="info-block-arrow"></div> : ''}
   </div>
 }
 
