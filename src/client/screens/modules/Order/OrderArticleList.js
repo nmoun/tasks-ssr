@@ -33,7 +33,7 @@ class OrderArticleList extends React.Component{
 
   handleClickLeft(articleId){
     const {history, match} = this.props
-    history.push(match.url + '/' + articleId + '#' + this.props.taskId)
+    history.push(match.url + '/' + articleId)
   }
 
   handleSubmitArticleCode(articleCode){

@@ -1,8 +1,7 @@
 // import React from 'react'
 // import Loadable from 'react-loadable'
 import withAuthentication from 'enhancers/withAuthentication'
-import withTransaction from 'enhancers/withTransaction'
-import Reception from 'screens/modules/Reception'
+import Delivery from 'screens/modules/Delivery'
 import Order from 'screens/modules/Order'
 import Register from 'screens/Register'
 import Login from 'screens/Login'
@@ -35,8 +34,8 @@ const routes = [
     // })
   },
   {
-    path: '/reception',
-    component: withAuthentication(withTransaction(Reception))
+    path: '/delivery',
+    component: withAuthentication(Delivery)
   },
 ]
 

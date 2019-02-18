@@ -24,11 +24,15 @@ function withTransaction(WrappedComponent, defaultTaskFields){
         props.history.goBack()
       }
 
-      if(props.location.hash.length > 0){
-        this.state.currentTaskId = props.location.hash.slice(1)
+      // Extract task id
+      let arr = new RegExp(props.match.path + '/([^/]+).*$').exec(props.location.pathname),
+        taskId = arr ? arr[1] : null
+
+      if(taskId){
+        this.state.currentTaskId = taskId
         props.startTransaction(this.state.currentTaskId, props.task)
       }else {
-        // Root route: create a temporary task and display it
+        // Create a temporary task and display it
         const { history } = props,
           newTaskId = generateTmpId()
         props.createTask({id: newTaskId, ...defaultTaskFields})
@@ -43,7 +47,7 @@ function withTransaction(WrappedComponent, defaultTaskFields){
     }
 
     render(){
-      return <WrappedComponent {...this.props} />
+      return <WrappedComponent taskId={this.state.currentTaskId} {...this.props} />
     }
   }
 

@@ -13,7 +13,7 @@ class TaskWidget extends React.Component {
 
   render(){
     const icon = (this.props.status === TASK_STATUS.LOADING) ? ICONS.LOADING : null
-    return <Link to={'/' + this.props.type + '/' + this.props.id + '#' + this.props.id }>
+    return <Link to={'/' + this.props.type + '/' + this.props.id }>
       <Widget {...this.props} className="task-widget" icon={icon}/>
     </Link>
   }
