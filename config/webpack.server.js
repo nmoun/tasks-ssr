@@ -42,40 +42,12 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
-        }
-      },
-      {
-        test: /\.(scss)$/,
-        use: [{
-          loader: 'css-loader', // translates CSS into CommonJS modules
+          loader: 'babel-loader',
           options: {
-            sourceMap: false
-          }
-        }, {
-          loader: 'postcss-loader', // Run post css actions
-          options: {
-            plugins: function() { // post css plugins, can be exported to postcss.config.js
-              return [
-                require('precss'),
-                require('autoprefixer')
-              ]
+            caller: {
+              name: 'server-build'
             }
           }
-        }, {
-          loader: 'resolve-url-loader'
-        }, {
-          loader: 'sass-loader', // compiles Sass to CSS
-          options:{
-            sourceMap: true
-          }
-        }]
-      },
-      {
-        test: /\.(svg|woff2)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[hash].[ext]'
         }
       },
     ]

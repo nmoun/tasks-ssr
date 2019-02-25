@@ -12,7 +12,7 @@ import morgan from 'morgan' // logging
 const app = express()
 const MongoStore = connectMongo(session)
 
-let assetPath = __dirname
+let assetPath = __dirname + '/client'
 if(process.env.NODE_ENV !== 'production'){
   console.log('environment development')
   app.use(morgan('dev'))
