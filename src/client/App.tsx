@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import routes from 'routes'
+import * as React from 'react'
+import routes from './routes'
 import { Switch, Route } from 'react-router-dom'
 
-class App extends Component {
+class App extends React.Component<{}, any> {
 
   constructor(props) {
     super(props)
