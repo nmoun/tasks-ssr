@@ -14,8 +14,9 @@ module.exports = function(api) {
   const isSB = api.caller(isServerBuild)
 
   const presets = [
+    '@babel/preset-react',
     '@babel/preset-env',
-    '@babel/preset-react'
+    '@babel/preset-typescript'
   ]
   const plugins = [
     '@babel/plugin-syntax-dynamic-import',

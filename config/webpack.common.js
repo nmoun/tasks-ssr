@@ -3,12 +3,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
 const devMode = process.env.NODE_ENV !== 'production'
-
+console.log('__dirname: ' + __dirname)
+console.log('resolved client folder: ' + path.resolve(__dirname, '../src/client'))
 module.exports = {
   entry: [
     './src/client/index.js'
   ],
   resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     modules: ['node_modules', 'src/client']
   },
   output: {
@@ -33,6 +35,19 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(t|j)sx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        include: path.resolve(__dirname, '../src/client'),
+        loader: 'source-map-loader'
+      },
+      {
         enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
@@ -45,13 +60,6 @@ module.exports = {
             loader: require.resolve('eslint-loader'),
           },
         ],
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
       },
       {
         test: /\.(scss)$/,
