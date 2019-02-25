@@ -1,5 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 const devMode = process.env.NODE_ENV !== 'production'
 
@@ -19,8 +20,16 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'styles.css',
-    })
+    }),
+    new CopyPlugin([
+      (devMode) ? 'node_modules/react/umd/react.development.js' : 'node_modules/react/umd/react.production.min.js',
+      (devMode) ? 'node_modules/react-dom/umd/react-dom.development.js' : 'node_modules/react-dom/umd/react-dom.production.min.js',
+    ]),
   ],
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+  },
   module: {
     rules: [
       {
