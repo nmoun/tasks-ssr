@@ -16,6 +16,7 @@ module.exports = {
   entry: './src/server/index.js',
   devtool: 'false',
   resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
     modules: ['node_modules', 'src/client']
   },
   output: {
@@ -39,7 +40,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.js$/,
+        test: /\.(t|j)sx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',

@@ -22,8 +22,7 @@ module.exports = function(api) {
     '@babel/plugin-syntax-dynamic-import',
     ['module-resolver', {
       'root': ['./src/client'],
-      'alias': {
-      }
+      'extensions': ['.js', '.jsx', '.ts', '.tsx']
     }],
     'inline-react-svg'
   ]

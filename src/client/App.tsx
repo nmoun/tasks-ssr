@@ -1,5 +1,5 @@
 import * as React from 'react'
-import routes from './routes'
+import routes from 'routes'
 import { Switch, Route } from 'react-router-dom'
 
 class App extends React.Component<{}, any> {

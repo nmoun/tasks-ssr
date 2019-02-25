@@ -4,7 +4,7 @@ import withAuthentication from 'enhancers/withAuthentication'
 import Delivery from 'screens/modules/Delivery'
 import Order from 'screens/modules/Order'
 import Register from 'screens/Register'
-import Login from 'screens/Login.tsx'
+import Login from 'screens/Login'
 import Home from 'screens/Home'
 
 const routes : Array<{path: string, exact?: boolean, component: any}> = [
