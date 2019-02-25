@@ -1,7 +1,8 @@
 # Description
 Dummy in-store web app. Same as [this project](https://github.com/nmoun/tasks), but with server side rendering  
 Client: react, redux, sass  
-Server: express, passport, mongodb  
+Server: express, passport  
+DBMS: mongodb  
 Test: mocha & chai for app's state, & postman for web service calls
 
 # Launching

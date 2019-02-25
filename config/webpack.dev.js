@@ -10,8 +10,8 @@ const devConfig = merge(common, {
   ],
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
   ],
 })
-console.log(JSON.stringify(devConfig, null, 2))
+console.log('webpack dev config: ' + JSON.stringify(devConfig, null, 2))
 module.exports = devConfig

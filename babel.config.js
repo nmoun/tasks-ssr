@@ -2,8 +2,16 @@ function isBabelNode(caller) {
   return !!(caller && caller.name === '@babel/node')
 }
 
+/**
+ * Returns true if server's bundle is being built
+ */
+function isServerBuild(caller) {
+  return !!(caller && caller.name === 'server-build')
+}
+
 module.exports = function(api) {
   const isBN = api.caller(isBabelNode)
+  const isSB = api.caller(isServerBuild)
 
   const presets = [
     '@babel/preset-env',
@@ -19,12 +27,12 @@ module.exports = function(api) {
     'inline-react-svg'
   ]
 
-  if(isBN){
-    // ignore scss files in development mode
+  if(isBN || isSB){
+    // ignore scss & svg imports
     plugins.push([
       './external/babel-plugin-ignore-imports',
       {
-        'extensions': ['.scss']
+        'extensions': ['.scss', '.svg']
       }
     ])
   }
