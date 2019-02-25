@@ -32,6 +32,13 @@ router.get('/',  (req, res) => {
 })
 
 function htmlTemplate(reactDom, preloadedState, language) {
+  // Script loading order matters (react -> react-dom -> main)
+  let scripts = []
+  if(process.env.NODE_ENV === 'production'){
+    scripts = ['react.production.min.js', 'react-dom.production.min.js', 'main.bundle.js']
+  } else {
+    scripts = ['react.development.js', 'react-dom.development.js', 'main.bundle.js']
+  }
   return `
       <!DOCTYPE html>
       <html>
@@ -40,7 +47,6 @@ function htmlTemplate(reactDom, preloadedState, language) {
           <title>Tasks SSR</title>
           <link rel="stylesheet" href="./styles.css">
       </head>
-      
       <body>
           <div id="root">${reactDom}</div>
           <script>
@@ -49,7 +55,7 @@ function htmlTemplate(reactDom, preloadedState, language) {
             window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
             window.__LANG__ = ${JSON.stringify(language)}
           </script>
-          <script src="./main.bundle.js"></script>
+          ${scripts.map((file) => (`<script src="./${file}"></script>`)).join('\n')}
       </body>
       </html>
   `
