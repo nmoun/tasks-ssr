@@ -43,7 +43,7 @@ class OrderArticleDetail extends React.Component{
   }
 
   render(){
-    const title = `Article detail ${this.props.articleIndex !== -1 ? this.props.articleIndex + 1 : 'X'}/${this.props.articles.length}`
+    const title = `Article detail ${this.props.articleIndex !== -1 ? this.props.articleIndex + 1 : 'X'}/${this.props.task.articles.length}`
     return <ThemedPage>
       <Header title={title} leftIcon={ICONS.LEFT} handleClickLeft={this.goBack}/>
       <ArticleCell {...this.props.article} handleChangeValue={this.handleChangeValue}/>

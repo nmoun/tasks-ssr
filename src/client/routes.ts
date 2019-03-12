@@ -22,7 +22,7 @@ const routes : Array<{path: string, exact?: boolean, component: any}> = [
     component: Register
   },
   {
-    path: '/order/:taskId',
+    path: '/order',
     component: withAuthentication(Order)
     // component: Loadable({
     //   loader: () => import('screens/modules/Order'),
@@ -34,7 +34,7 @@ const routes : Array<{path: string, exact?: boolean, component: any}> = [
     // })
   },
   {
-    path: '/delivery/:taskId',
+    path: '/delivery',
     component: withAuthentication(Delivery)
   },
 ]

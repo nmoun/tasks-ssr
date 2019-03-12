@@ -17,13 +17,13 @@ class Delivery extends React.Component{
   render(){
     const { taskId } = this.props
     return <React.Fragment>
-      <Route path={`${this.props.match.path}`} exact render={(props) => {
+      <Route path={`${this.props.match.path}/:taskId`} exact render={(props) => {
         return <DeliveryHome taskId={taskId} {...this.props} {...props}/>
       }} />
-      <Route path={`${this.props.match.path}/articles`} exact render={(props) => {
+      <Route path={`${this.props.match.path}/:taskId/articles`} exact render={(props) => {
         return <DeliveryArticleList taskId={taskId} {...this.props} {...props}/>
       }} />
-      <Route path={`${this.props.match.path}/articles/:articleId`} exact render={(props) => {
+      <Route path={`${this.props.match.path}/:taskId/articles/:articleId`} exact render={(props) => {
         return <DeliveryArticleDetail taskId={taskId} articleId={props.match.params.articleId} {...this.props} {...props}/>
       }} />
     </React.Fragment>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { getTask, getTaskArticles, hasTaskChanged } from 'state/reducers'
+import { getTask, hasTaskChanged } from 'state/reducers'
 import { startTransaction, stopTransaction, discardChanges } from 'state/actions/transaction'
 import { createTask, saveTask } from 'state/actions/tasks'
 import { openDialogConfirm, closeDialogConfirm } from 'components/dialogs/DialogConfirm'
@@ -9,28 +9,20 @@ import { TASK_STATUS } from 'utils/constants'
 import { openDialogInfo } from 'components/dialogs/DialogInfo'
 
 /**
+ * Entry in a task starts a transaction: a snapshot of the task is saved.
+ * Leaving the task stops the transaction: the snapshot is deleted.
  * @param {React.Component} WrappedComponent - module needing transaction system
- * @param {Object} defaultTaskFields -
+ * @param {object} defaultTaskFields -
  */
-function withTransaction(WrappedComponent, defaultTaskFields){
-  class WithTransaction extends React.Component {
+function withTransactionInit(WrappedComponent, defaultTaskFields){
+  class WithTransactionInit extends React.Component {
     constructor(props){
       super(props)
       this.state = {
         currentTaskId: null
       }
 
-      this.exitTask = this.exitTask.bind(this)
-
-      if(props.task && props.task.status === TASK_STATUS.LOADING){
-        openDialogInfo({message: 'Task is being processed'})
-        props.history.goBack()
-      }
-
-      let taskId
-      if(props.match.params.taskId){
-        taskId = props.match.params.taskId
-      }
+      let taskId = /[^\/]+\/?([^\/]*)/.exec(props.location.pathname)[1]
 
       if(taskId){
         this.state.currentTaskId = taskId
@@ -42,12 +34,52 @@ function withTransaction(WrappedComponent, defaultTaskFields){
         props.createTask({id: newTaskId, ...defaultTaskFields})
         props.startTransaction(newTaskId)
         this.state.currentTaskId = newTaskId
-        history.replace(`${props.match.path}/${newTaskId}`)
+        history.replace(`${props.match.url}/${newTaskId}`)
+      }
+    }
+
+    componentWillUnmount(){
+      this.props.stopTransaction(this.state.currentTaskId)
+    }
+
+    render(){
+      return <WrappedComponent taskId={this.state.currentTaskId} {...this.props}/>
+    }
+  }
+
+  const mapDispatchToProps = {
+    startTransaction,
+    stopTransaction,
+    createTask,
+  }
+
+  return connect(null, mapDispatchToProps)(WithTransactionInit)
+}
+
+/**
+ * Add functionalities:
+ * - Prevent task entry if the task is being processed
+ * - Save or discard task's changes made during a transaction
+ * @param {Reac.Component} WrappedComponent 
+ * @param {object} defaultTaskFields 
+ */
+function withTransaction(WrappedComponent, defaultTaskFields){
+
+  class WithTransaction extends React.Component {
+    constructor(props){
+      super(props)
+      this.exitTask = this.exitTask.bind(this)
+
+      // prevent task entry if the task is being processed
+      if(props.task && props.task.status === TASK_STATUS.LOADING){
+        openDialogInfo({message: 'Task is being processed'})
+        props.history.goBack()
       }
     }
 
     /**
-     * Exits the task and go back to the task list
+     * Exits the task and go back to the task list.
+     * If the task was modified, ask to save the modifications or discard them.
      */
     exitTask(){
       const { history } = this.props
@@ -60,7 +92,7 @@ function withTransaction(WrappedComponent, defaultTaskFields){
           handleYes: () => {
             this.props.saveTask({
               ...this.props.task,
-              subtitle: this.props.articles.length + ' article(s)'
+              subtitle: this.props.task.articles.length + ' article(s)'
             })
             closeDialogConfirm()
             history.goBack()
@@ -74,32 +106,24 @@ function withTransaction(WrappedComponent, defaultTaskFields){
       }
     }
 
-    componentWillUnmount(){
-      this.props.stopTransaction(this.state.currentTaskId)
-    }
-
     render(){
-      return <WrappedComponent taskId={this.state.currentTaskId} exitTask={this.exitTask} {...this.props} />
+      return <WrappedComponent exitTask={this.exitTask} {...this.props} />
     }
   }
 
   const mapDispatchToProps = {
-    startTransaction,
-    stopTransaction,
-    createTask,
     discardChanges,
     saveTask,
   }
 
   const mapStateToProps = (state, ownProps) => {
     return {
-      task: getTask(state, ownProps.match.params.taskId),
-      articles: getTaskArticles(state, ownProps.match.params.taskId),
-      hasTaskChanged: hasTaskChanged(state, ownProps.match.params.taskId)
+      task: getTask(state, ownProps.taskId),
+      hasTaskChanged: hasTaskChanged(state, ownProps.taskId)
     }
   }
 
-  return connect(mapStateToProps, mapDispatchToProps)(WithTransaction)
+  return withTransactionInit(connect(mapStateToProps, mapDispatchToProps)(WithTransaction), defaultTaskFields)
 }
 
 export default withTransaction

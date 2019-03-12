@@ -7,7 +7,7 @@ console.log('__dirname: ' + __dirname)
 console.log('resolved client folder: ' + path.resolve(__dirname, '../src/client'))
 module.exports = {
   entry: [
-    './src/client/index.js'
+    './src/client/index.tsx'
   ],
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],

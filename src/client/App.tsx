@@ -2,7 +2,7 @@ import * as React from 'react'
 import routes from 'routes'
 import { Switch, Route } from 'react-router-dom'
 
-class App extends React.Component<{}, any> {
+class App extends React.Component<{}, null> {
 
   constructor(props) {
     super(props)

@@ -21,18 +21,18 @@ class DeliveryHome extends React.Component {
   validateTask(){
     this.props.validateTask({
       ...this.props.task,
-      subtitle: this.props.articles.length + ' article(s)'
+      subtitle: this.props.task.articles.length + ' article(s)'
     })
     this.props.history.goBack()
   }
 
   render(){
-    let { task, articles } = this.props
+    let { task } = this.props
 
     return <ThemedPage>
       <Header title="Delivery" leftIcon={ICONS.LEFT} handleClickLeft={this.props.exitTask} rightText={getLabel('task.validate')} handleClickRight={this.validateTask}/>
       <InfoBlock text={'Supplier: ' + task.content.supplier.description} />
-      <InfoBlock text={`${articles.length} articles to check`} handleClick={this.handleClickArticleBlock}/>
+      <InfoBlock text={`${task.articles.length} articles to check`} handleClick={this.handleClickArticleBlock}/>
     </ThemedPage>
   }
 }

@@ -1,11 +1,17 @@
-import React from 'react'
+import * as React from 'react'
 
 var currentLang = {}
+
+declare global {
+  interface Window {
+    __LANG__: object
+  }
+}
 
 /**
  * Closure on currentLang
  */
-class LabelProvider extends React.Component {
+class LabelProvider extends React.Component<any, null> {
   constructor(props){
     super(props)
     currentLang = typeof window !== 'undefined' ? window.__LANG__ : {}

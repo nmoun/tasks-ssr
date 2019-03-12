@@ -32,7 +32,7 @@ class DeliveryArticleList extends React.Component{
     apiArticle.fetchArticle(articleCode)
       .then((res) => {
         if(res.length > 0){
-          let tmp = this.props.articles.filter((article) => (article.id == res[0].id))
+          let tmp = this.props.task.articles.filter((article) => (article.id == res[0].id))
           if(tmp.length === 0){
             this.props.addArticle(res[0], this.props.task.id)
           }else{
@@ -59,7 +59,7 @@ class DeliveryArticleList extends React.Component{
 
   componentDidMount(){
     // Display the popup to scan an article if there are no articles
-    if(this.props.articles.length === 0)
+    if(this.props.task.articles.length === 0)
       this.openDialogScan()
   }
 
@@ -73,9 +73,9 @@ class DeliveryArticleList extends React.Component{
   render(){
     return <ThemedPage fab={true} handleClickFab={this.openDialogScan}>
       <Header title={this.props.task.title} leftIcon={ICONS.LEFT} handleClickLeft={this.goBack}/>
-      {this.props.articles.length > 0 ?
+      {this.props.task.articles.length > 0 ?
         <ArticleList
-          articles={this.props.articles}
+          articles={this.props.task.articles}
           handleChangeValue={this.handleChangeValue}
           handleClickLeft={this.handleClickLeft}
           handleClickRemoval={this.handleClickRemoval}/>

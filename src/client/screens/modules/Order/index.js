@@ -16,10 +16,10 @@ class Order extends React.Component{
   render(){
     const { taskId } = this.props
     return <React.Fragment>
-      <Route path={`${this.props.match.path}`} exact render={(props) => {
+      <Route path={`${this.props.match.path}/:taskId`} exact render={(props) => {
         return <OrderArticleList taskId={taskId} {...this.props} {...props}/>
       }} />
-      <Route path={`${this.props.match.path}/:articleId`} exact render={(props) => {
+      <Route path={`${this.props.match.path}/:taskId/:articleId`} exact render={(props) => {
         return <OrderArticleDetail taskId={taskId} articleId={props.match.params.articleId}  {...this.props} {...props}/>
       }} />
     </React.Fragment>

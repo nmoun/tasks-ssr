@@ -34,7 +34,7 @@ class OrderArticleList extends React.Component{
     apiArticle.fetchArticle(articleCode)
       .then((res) => {
         if(res.length > 0){
-          let tmp = this.props.articles.filter((article) => (article.id == res[0].id))
+          let tmp = this.props.task.articles.filter((article) => (article.id == res[0].id))
           if(tmp.length === 0){
             this.props.addArticle(res[0], this.props.task.id)
           }else{
@@ -61,14 +61,14 @@ class OrderArticleList extends React.Component{
 
   componentDidMount(){
     // Display the popup to scan an article if there are no articles
-    if(this.props.articles.length === 0)
+    if(this.props.task.articles.length === 0)
       this.openDialogScan()
   }
 
   validateTask(){
     this.props.validateTask({
       ...this.props.task,
-      subtitle: this.props.articles.length + ' article(s)'
+      subtitle: this.props.task.articles.length + ' article(s)'
     })
     this.props.history.goBack()
   }
@@ -81,9 +81,9 @@ class OrderArticleList extends React.Component{
         handleClickLeft={this.props.exitTask}
         rightText={getLabel('task.validate')} 
         handleClickRight={this.validateTask}/>
-      {this.props.articles.length > 0 ?
+      {this.props.task.articles.length > 0 ?
         <ArticleList
-          articles={this.props.articles}
+          articles={this.props.task.articles}
           handleChangeValue={this.handleChangeValue}
           handleClickLeft={this.handleClickLeft}
           handleClickRemoval={this.handleClickRemoval}/>
